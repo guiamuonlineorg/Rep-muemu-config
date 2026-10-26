@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia y Drop General - Tutorial MuEmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' } },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        /* Estilos para el texto del artículo */
+        .article-content h3 { color: #d4af37; font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content p { margin-bottom: 1.25rem; color: #d1d5db; line-height: 1.7; }
+        .article-content li { margin-bottom: 0.75rem; color: #d1d5db; }
+        .code-block { background-color: #050505; border: 1px solid #2a2b3d; border-left: 4px solid #a855f7; border-radius: 0.5rem; padding: 1rem; font-family: 'Fira Code', monospace; color: #a5b4fc; font-size: 0.9rem; overflow-x: auto; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-lg bg-mu-border flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h1 class="font-title text-lg font-bold text-white">Tutoriales MuEmu</h1>
+                </div>
+            </div>
+            <div class="text-sm font-mono text-mu-gold hidden sm:block">
+                <i class="fa-solid fa-folder-open mr-1"></i> / GameServer / Common.dat
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+        <!-- Navegación Breadcrumb -->
+        <nav class="text-xs font-mono text-gray-500 mb-6">
+            <a href="../index.html" class="hover:text-mu-purple">Inicio</a> &gt; 
+            <a href="index.html" class="hover:text-mu-purple">Tutoriales</a> &gt; 
+            <span class="text-gray-300">Experiencia y Drop General</span>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Contenido Principal -->
+            <article class="lg:w-3/4 bg-mu-card border border-mu-border rounded-2xl overflow-hidden shadow-xl">
+                <!-- Hero Image del Artículo -->
+                <div class="h-64 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="Modificando Código" class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Básico</span>
+                        <h1 class="font-title text-3xl md:text-4xl text-white font-bold drop-shadow-md">Cómo configurar la Experiencia y el Drop General</h1>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-10 article-content">
+                    <p class="text-lg text-gray-300">
+                        En esta guía aprenderás a ajustar la dificultad principal de tu servidor. Esta configuración define cuánta experiencia ganan los personajes al derrotar monstruos y qué tan frecuente es la caída de ítems generales y Zen.
+                    </p>
+
+                    <h3>1. Ubicando el Archivo Correcto</h3>
+                    <p>
+                        Todos los parámetros generales de jugabilidad se manejan en un archivo principal del GameServer. Ve a tu VPS o computadora host y sigue esta ruta exacta:
+                    </p>
+                    <div class="code-block text-gray-300">
+                        <i class="fa-regular fa-folder-open mr-2 text-mu-gold"></i> Muserver / GameServer / Data / GameServerInfo - Common.dat
+                    </div>
+
+                    <h3>2. Modificando la Experiencia (EXP)</h3>
+                    <p>
+                        Abre el archivo <code>Common.dat</code> con el Bloc de notas o Notepad++. Busca la sección llamada <code>[GameServerInfo]</code>. Debajo encontrarás la línea de experiencia.
+                    </p>
+                    <div class="code-block">
+                        // Experiencia Base del servidor<br>
+                        <span class="text-blue-400">AddExperience</span> = <span class="text-green-400">100</span>
+                    </div>
+                    <ul class="list-disc pl-5 mb-6">
+                        <li><strong>Hard (Difícil):</strong> Configura entre 1 y 50.</li>
+                        <li><strong>Medium (Medio):</strong> Configura entre 100 y 500.</li>
+                        <li><strong>Fast/Fun (Fácil):</strong> Configura entre 1000 y 9999.</li>
+                    </ul>
+
+                    <h3>3. Modificando el Drop (Caída de Ítems)</h3>
+                    <p>
+                        En el mismo archivo, un poco más abajo, encontrarás la variable del Drop. Este número representa un porcentaje de éxito general para que los monstruos suelten "algo" al morir (ítems o zen).
+                    </p>
+                    <div class="code-block">
+                        // Porcentaje de Drop (0 a 100)<br>
+                        <span class="text-blue-400">ItemDropPer</span> = <span class="text-green-400">50</span>
+                    </div>
+
+                    <!-- Cuadro de Alerta / Tip -->
+                    <div class="bg-purple-900/20 border-l-4 border-mu-purple p-4 rounded-r-lg my-8">
+                        <div class="flex items-center text-mu-purple font-bold mb-2">
+                            <i class="fa-solid fa-lightbulb mr-2 text-xl"></i> Pro Tip: Sistemas VIP
+                        </div>
+                        <p class="text-sm text-gray-300 mb-0">
+                            Si tu servidor tiene sistema VIP activado, recuerda buscar las líneas <code>AddExperienceVIP</code> (VIP 1, 2 y 3) dentro del mismo archivo para darle un porcentaje extra a los usuarios que apoyan tu servidor con suscripciones.
+                        </p>
+                    </div>
+
+                    <h3>4. Aplicando los Cambios sin Reiniciar</h3>
+                    <p>
+                        Una de las mejores ventajas de MuEmu es que no necesitas apagar el servidor (GameServer) para que estos cambios tengan efecto.
+                    </p>
+                    <ol class="list-decimal pl-5">
+                        <li>Guarda el archivo <code>Common.dat</code> (Ctrl + S).</li>
+                        <li>Abre la ventana negra del <strong>GameServer</strong> en tu VPS.</li>
+                        <li>En el menú superior de esa ventana, haz clic en <strong>Reload</strong> (Recargar).</li>
+                        <li>Selecciona la opción <strong>Common</strong>.</li>
+                    </ol>
+                    <p class="mt-4 font-bold text-emerald-400">
+                        <i class="fa-solid fa-check-circle mr-1"></i> ¡Listo! Los jugadores verán el cambio de experiencia en tiempo real tras matar al siguiente monstruo.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="lg:w-1/4 space-y-6">
+                <!-- Info de Autor/Admin -->
+                <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+                    <h4 class="font-title text-mu-gold font-bold mb-3 border-b border-mu-border pb-2 text-sm">Sobre el Autor</h4>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-mu-border flex items-center justify-center text-gray-400">
+                            <i class="fa-solid fa-user-shield text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-white font-bold text-sm">Admin</p>
+                            <p class="text-xs text-gray-400 font-mono">Webmaster MuEmu</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Herramientas útiles -->
+                <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+                    <h4 class="font-title text-white font-bold mb-3 border-b border-mu-border pb-2 text-sm flex items-center">
+                        <i class="fa-solid fa-toolbox text-mu-purple mr-2"></i> Herramientas
+                    </h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="../cash-shop.html" class="flex items-center text-sm text-gray-400 hover:text-mu-gold transition p-2 rounded hover:bg-mu-border/50">
+                                <i class="fa-solid fa-cart-shopping mr-2 w-4"></i> Creador Cash Shop (X)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            
+        </div>
+    </main>
+
+</body>
+</html>
