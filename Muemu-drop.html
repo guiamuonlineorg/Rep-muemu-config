@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Drop - MuEmu Config</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f172a',
+                        card: '#1e293b',
+                        accent: '#06b6d4',
+                        purple: '#a855f7',
+                        'purple-accent': '#c084fc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #ffffff; }
+        .card { background-color: #1e293b; }
+        .accent-text { color: #06b6d4; }
+        .accent-bg { background-color: #06b6d4; }
+        .accent-bg:hover { background-color: #0891b2; }
+        .btn-hover:hover { background-color: #0c4a6e; }
+        .purple-accent { color: #a855f7; }
+        .purple-accent-bg { background-color: #a855f7; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+
+    <!-- Navegación -->
+    <nav class="bg-slate-900 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold purple-accent">MuEmu</span>
+                        <span class="text-2xl font-bold text-white ml-1">Config</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <h1 class="text-4xl font-extrabold text-white mb-2">
+                Calculadora de <span class="purple-accent">Drop</span>
+            </h1>
+            <p class="text-slate-300 text-lg">
+                Genera múltiples líneas de configuración para el archivo Drop Index.
+            </p>
+        </div>
+
+        <div class="card rounded-2xl shadow-xl overflow-hidden mb-8">
+            <div class="px-6 py-8">
+                <form id="dropForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- ID del Ítem -->
+                        <div>
+                            <label for="itemId" class="block text-sm font-medium text-slate-300 mb-2">ID del Ítem</label>
+                            <input type="number" id="itemId" required
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent transition"
+                                placeholder="Ej: 0">
+                        </div>
+                        <!-- Nivel Mínimo -->
+                        <div>
+                            <label for="minLevel" class="block text-sm font-medium text-slate-300 mb-2">Nivel Mínimo</label>
+                            <input type="number" id="minLevel" value="0" min="0" max="15" required
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
+                        </div>
+                        <!-- Nivel Máximo -->
+                        <div>
+                            <label for="maxLevel" class="block text-sm font-medium text-slate-300 mb-2">Nivel Máximo</label>
+                            <input type="number" id="maxLevel" value="0" min="0" max="15" required
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent transition">
+                        </div>
+                        <!-- Probabilidad -->
+                        <div>
+                            <label for="rate" class="block text-sm font-medium text-slate-300 mb-2">Probabilidad (%)</label>
+                            <input type="number" id="rate" step="0.01" required
+                                class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-accent transition"
+                                placeholder="Ej: 100">
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button type="submit"
+                            class="w-full sm:w-2/3 accent-bg text-white font-bold py-4 rounded-xl shadow-lg btn-hover transition transform hover:-translate-y-1">
+                            Agregar Línea
+                        </button>
+                        <button type="button" onclick="limpiarCampos()"
+                            class="w-full sm:w-1/3 bg-slate-700 hover:bg-slate-600 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:-translate-y-1">
+                            Limpiar Campos
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Resultado -->
+        <div id="resultContainer" class="card rounded-2xl shadow-xl overflow-hidden hidden">
+            <div class="px-6 py-4 border-b border-slate-700 flex justify-between items-center bg-slate-950">
+                <h3 class="font-bold text-lg">Resultado de Configuración</h3>
+                <div class="space-x-4">
+                    <button onclick="limpiarLista()" class="text-red-400 hover:text-red-300 font-medium text-sm transition">
+                        Borrar Lista
+                    </button>
+                    <button onclick="copyToClipboard()" class="text-accent hover:text-white font-medium text-sm transition">
+                        Copiar Todo
+                    </button>
+                </div>
+            </div>
+            <div class="px-6 py-6">
+                <pre class="bg-slate-900 rounded-xl p-4 overflow-x-auto border border-slate-700 flex">
+                    <code id="resultCode" class="text-purple-accent font-mono text-sm w-max whitespace-pre"></code>
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-6 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">
+                Desarrollado para la administración de servidores MuOnline.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializamos la variable con el encabezado requerido por MuEmu
+        let codigoGeneradoExacto = "//ItemIndex\tMinLevel\tMaxLevel\tRate\n";
+        let lineasAgregadas = 0;
+
+        document.getElementById('dropForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const itemId = document.getElementById('itemId').value.trim();
+            const minLevel = document.getElementById('minLevel').value.trim() || '0';
+            const maxLevel = document.getElementById('maxLevel').value.trim() || '0';
+            const rateInput = document.getElementById('rate').value.trim();
+            
+            const rate = rateInput !== "" ? rateInput : '0';
+
+            // Sumamos la nueva línea al texto ya existente
+            codigoGeneradoExacto += `\t\t${itemId}\t\t\t${minLevel}\t\t\t${maxLevel}\t\t\t${rate}\n`;
+            lineasAgregadas++;
+
+            document.getElementById('resultCode').textContent = codigoGeneradoExacto;
+            document.getElementById('resultContainer').classList.remove('hidden');
+
+            // Limpiamos solo el ID para agilizar la carga del siguiente ítem (opcional)
+            document.getElementById('itemId').value = '';
+            document.getElementById('itemId').focus();
+        });
+
+        function limpiarCampos() {
+            document.getElementById('dropForm').reset();
+            document.getElementById('minLevel').value = '0';
+            document.getElementById('maxLevel').value = '0';
+        }
+
+        function limpiarLista() {
+            codigoGeneradoExacto = "//ItemIndex\tMinLevel\tMaxLevel\tRate\n";
+            lineasAgregadas = 0;
+            document.getElementById('resultCode').textContent = "";
+            document.getElementById('resultContainer').classList.add('hidden');
+        }
+
+        function copyToClipboard() {
+            if(lineasAgregadas === 0) return;
+            
+            navigator.clipboard.writeText(codigoGeneradoExacto).then(() => {
+                alert('¡Código copiado al portapapeles!');
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
