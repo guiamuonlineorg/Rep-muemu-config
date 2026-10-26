@@ -54,10 +54,39 @@
                 Calculadora de <span class="text-purple-400">Drop</span>
             </h1>
             <p class="text-slate-300 text-lg">
-                Genera múltiples líneas de configuración para el archivo Drop Index.
+                Genera múltiples líneas de configuración para el archivo Drop Index con tabulaciones exactas.
             </p>
         </div>
 
+        <!-- Tarjeta de Instrucciones / Dónde va el código -->
+        <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl mb-8 bg-slate-900/60">
+            <div class="flex items-center mb-4">
+                <div class="p-2 bg-purple-500/20 text-purple-400 rounded-lg mr-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-bold text-white">¿Dónde se coloca este código?</h2>
+            </div>
+            
+            <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+                <p>
+                    <strong class="text-cyan-400">Ruta del archivo en el servidor:</strong><br>
+                    <code class="bg-slate-950 px-2 py-1 rounded text-purple-300 font-mono text-xs">Server\Data\Item\DropManager.txt</code> (o en algunos repacks <code class="bg-slate-950 px-2 py-1 rounded text-purple-300 font-mono text-xs">ItemDrop.txt</code>).
+                </p>
+                <p>
+                    <strong class="text-cyan-400">Pasos para aplicar la configuración:</strong>
+                </p>
+                <ol class="list-decimal list-inside space-y-1 text-slate-400 pl-2">
+                    <li>Genera tus líneas usando el formulario de abajo y toca en <span class="text-white font-semibold">Copiar Todo</span>.</li>
+                    <li>Abre el archivo <code class="text-purple-300 font-mono">DropManager.txt</code> con Notepad++ (en VPS) o Acode (en celular).</li>
+                    <li>Pega el texto copiado debajo del encabezado de la sección correspondiente o al final del archivo.</li>
+                    <li>Guarda los cambios y en la consola del <strong class="text-white">GameServer.exe</strong> recarga el drop (<code class="text-cyan-400">Reload / Reload Item Drop</code>) sin necesidad de reiniciar el servidor.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Formulario -->
         <div class="card rounded-2xl shadow-xl overflow-hidden mb-8">
             <div class="px-6 py-8">
                 <form id="dropForm" class="space-y-6">
@@ -147,7 +176,7 @@
             
             const rate = rateInput !== "" ? rateInput : '0';
 
-            // Formato exacto de tabulaciones para MuEmu
+            // Formato exacto con tabulaciones
             codigoGeneradoExacto += `\t\t${itemId}\t\t\t${minLevel}\t\t\t${maxLevel}\t\t\t${rate}\n`;
             lineasAgregadas++;
 
