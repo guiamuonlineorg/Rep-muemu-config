@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina Chaos - Tutorial MuEmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' } }, fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-track { background: #0a0a0f; } ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        .article-content h3 { color: #fb923c; font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content p, .article-content li { margin-bottom: 1.25rem; color: #d1d5db; line-height: 1.7; }
+        .code-block { background-color: #050505; border: 1px solid #2a2b3d; border-left: 4px solid #fb923c; border-radius: 0.5rem; padding: 1rem; font-family: 'Fira Code', monospace; color: #a5b4fc; font-size: 0.9rem; overflow-x: auto; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-lg bg-mu-border flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="font-title text-lg font-bold text-white">Tutoriales MuEmu</h1>
+            </div>
+            <div class="text-sm font-mono text-orange-400 hidden sm:block"><i class="fa-solid fa-folder-open mr-1"></i> Data / GameServerInfo - ChaosMix.dat</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+        <nav class="text-xs font-mono text-gray-500 mb-6"><a href="../index.html" class="hover:text-orange-400">Inicio</a> &gt; <a href="index.html" class="hover:text-orange-400">Tutoriales</a> &gt; <span class="text-gray-300">Máquina Chaos</span></nav>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <article class="lg:w-3/4 bg-mu-card border border-mu-border rounded-2xl overflow-hidden shadow-xl">
+                <div class="h-64 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Chaos Machine" class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Intermedio</span>
+                        <h1 class="font-title text-3xl md:text-4xl text-white font-bold drop-shadow-md">Porcentajes de la Máquina Chaos</h1>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-10 article-content">
+                    <p>El Goblin de Noria, encargado de la Máquina de Chaos, es una de las partes más odiadas y queridas por los jugadores. Aquí definiremos qué tan probable es subir un ítem a +15 o crear alas.</p>
+                    
+                    <h3>1. Ubicar el Archivo</h3>
+                    <div class="code-block text-gray-300">Muserver / GameServer / Data / GameServerInfo - ChaosMix.dat</div>
+
+                    <h3>2. Porcentajes para subir Ítems (+10 a +15)</h3>
+                    <p>Busca la sección referida al ítem upgrade. Verás números del 1 al 100.</p>
+                    <div class="code-block">
+                        ChaosMixPlus10Rate = <span class="text-orange-400">60</span><br>
+                        ChaosMixPlus11Rate = <span class="text-orange-400">60</span><br>
+                        ChaosMixPlus12Rate = <span class="text-orange-400">55</span><br>
+                        ChaosMixPlus13Rate = <span class="text-orange-400">50</span><br>
+                        ChaosMixPlus14Rate = <span class="text-orange-400">45</span><br>
+                        ChaosMixPlus15Rate = <span class="text-orange-400">40</span>
+                    </div>
+                    <p>Esto significa que para subir un ítem de +14 a +15 el jugador tiene un 40% de éxito base. (Al tener <i>Luck</i> el ítem in-game, se le suma un 20% más automáticamente).</p>
+
+                    <h3>3. Crear Alas y Entradas</h3>
+                    <p>Más abajo, tienes las opciones para los distintos niveles de Alas y tickets (Blood Castle, Devil Square):</p>
+                    <div class="code-block">
+                        ChaosMixWing1Rate = <span class="text-purple-400">100</span><br>
+                        ChaosMixWing2Rate = <span class="text-purple-400">90</span><br>
+                        ChaosMixWing3Rate = <span class="text-purple-400">40</span>
+                    </div>
+
+                    <div class="bg-orange-900/20 border-l-4 border-orange-500 p-4 rounded-r-lg my-8">
+                        <div class="flex items-center text-orange-400 font-bold mb-2"><i class="fa-solid fa-circle-exclamation mr-2 text-xl"></i> Atención: El Límite Máximo</div>
+                        <p class="text-sm text-gray-300 mb-0">En las opciones principales verás una configuración llamada <code>ChaosMixMaxRate</code> que por defecto está en 75 o 90. Esto significa que por más porcentaje que el jugador logre sumando ítems extra, la máquina NUNCA pasará de ese límite visual y matemático. Para servers "Fun" o fáciles, debes subir este límite a 100.</p>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="lg:w-1/4 space-y-6">
+                <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+                    <h4 class="font-title text-orange-400 font-bold mb-3 border-b border-mu-border pb-2 text-sm">Sobre el Autor</h4>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-mu-border flex items-center justify-center text-gray-400"><i class="fa-solid fa-user-shield text-xl"></i></div>
+                        <div><p class="text-white font-bold text-sm">Admin</p><p class="text-xs text-gray-400 font-mono">Webmaster MuEmu</p></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
