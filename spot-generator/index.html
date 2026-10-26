@@ -53,11 +53,34 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #d4af37;
         }
-        .glow-gold {
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        
+        /* Botón estilo inicio con brillo azul encendido, menor brillo al hover y fucsia al hacer clic */
+        .btn-glow-blue {
+            background-color: #0891b2;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
         }
-        .glow-gold-sm {
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+        .btn-glow-blue:hover {
+            background-color: #0e7490;
+            box-shadow: 0 0 6px rgba(6, 182, 212, 0.3);
+            opacity: 0.9;
+        }
+        .btn-glow-blue:active {
+            background-color: #c026d3 !important;
+            box-shadow: 0 0 25px rgba(217, 70, 239, 0.9) !important;
+            transform: scale(0.95);
+        }
+
+        /* Botón Guía con estallido violeta */
+        .btn-guide-burst {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-guide-burst:active {
+            background-color: #a855f7 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 1), 0 0 50px rgba(192, 132, 252, 0.8) !important;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -77,7 +100,11 @@
             </div>
             
             <div class="flex items-center space-x-2 sm:space-x-4">
-                <button onclick="scrollToSection('guide-section')" class="px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-300 hover:text-mu-gold hover:bg-mu-border/50 rounded-lg transition-all flex items-center space-x-2">
+                <a href="../index.html" class="btn-glow-blue px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg flex items-center space-x-2">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden sm:inline">Inicio</span>
+                </a>
+                <button onclick="scrollToSection('guide-section')" class="btn-guide-burst px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-300 hover:text-mu-gold hover:bg-mu-border/50 rounded-lg flex items-center space-x-2">
                     <i class="fa-solid fa-book text-mu-gold"></i>
                     <span class="hidden sm:inline">Guía & Tutorial</span>
                 </button>
@@ -254,32 +281,36 @@
                     <div class="flex items-center justify-between pb-3 border-b border-mu-border mb-4">
                         <h3 class="font-title text-sm sm:text-base text-gray-200 font-bold flex items-center space-x-2">
                             <i class="fa-solid fa-bookmark text-mu-gold"></i>
-                            <span>Referencia de IDs de Monstruos</span>
+                            <span>Referencia Completa de Monstruos</span>
                         </h3>
                     </div>
 
                     <p class="text-xs text-gray-400 mb-3">Haz clic en cualquier ID para auto-completar el formulario rápidamente:</p>
 
-                    <div class="space-y-3 max-h-[310px] overflow-y-auto pr-1">
+                    <div class="space-y-3 max-h-[360px] overflow-y-auto pr-1">
                         <!-- Lorencia -->
                         <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
                             <span class="text-xs font-bold text-mu-gold block mb-1.5"><i class="fa-solid fa-location-dot"></i> Lorencia (Map 0)</span>
                             <div class="flex flex-wrap gap-1.5">
                                 <button type="button" onclick="quickFillMonster(0, 0, 'Bull Fighter')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">0: Bull Fighter</button>
+                                <button type="button" onclick="quickFillMonster(0, 1, 'Hound')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">1: Hound</button>
                                 <button type="button" onclick="quickFillMonster(0, 2, 'Lich')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">2: Lich</button>
-                                <button type="button" onclick="quickFillMonster(0, 3, 'Hound')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">3: Hound</button>
-                                <button type="button" onclick="quickFillMonster(0, 4, 'Giant')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">4: Giant</button>
-                                <button type="button" onclick="quickFillMonster(0, 6, 'Skeleton Warrior')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">6: Skeleton</button>
+                                <button type="button" onclick="quickFillMonster(0, 3, 'Giant')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">3: Giant</button>
+                                <button type="button" onclick="quickFillMonster(0, 4, 'Skeleton Warrior')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">4: Skeleton</button>
+                                <button type="button" onclick="quickFillMonster(0, 6, 'Golems')" class="px-2 py-1 bg-mu-border/40 hover:bg-mu-gold hover:text-black rounded text-[11px] font-mono transition">6: Golem</button>
                             </div>
                         </div>
 
-                        <!-- Noria -->
+                        <!-- Dungeon -->
                         <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
-                            <span class="text-xs font-bold text-green-400 block mb-1.5"><i class="fa-solid fa-tree"></i> Noria (Map 3)</span>
+                            <span class="text-xs font-bold text-purple-400 block mb-1.5"><i class="fa-solid fa-skull"></i> Dungeon (Map 1)</span>
                             <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="quickFillMonster(3, 27, 'Goblin')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">27: Goblin</button>
-                                <button type="button" onclick="quickFillMonster(3, 29, 'Agoni')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">29: Agoni</button>
-                                <button type="button" onclick="quickFillMonster(3, 31, 'Stone Golem')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">31: Stone Golem</button>
+                                <button type="button" onclick="quickFillMonster(1, 10, 'SkeletonArcher')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">10: Skel Archer</button>
+                                <button type="button" onclick="quickFillMonster(1, 11, 'Elite Skeleton')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">11: Elite Skel</button>
+                                <button type="button" onclick="quickFillMonster(1, 12, 'Thunder Lich')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">12: Thunder Lich</button>
+                                <button type="button" onclick="quickFillMonster(1, 13, 'Poison Bull')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">13: Poison Bull</button>
+                                <button type="button" onclick="quickFillMonster(1, 14, 'Dark Knight')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">14: Dark Knight</button>
+                                <button type="button" onclick="quickFillMonster(1, 18, 'Gorgon')" class="px-2 py-1 bg-mu-border/40 hover:bg-purple-500 hover:text-black rounded text-[11px] font-mono transition">18: Gorgon</button>
                             </div>
                         </div>
 
@@ -287,19 +318,104 @@
                         <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
                             <span class="text-xs font-bold text-cyan-400 block mb-1.5"><i class="fa-solid fa-snowflake"></i> Devias (Map 2)</span>
                             <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="quickFillMonster(2, 20, 'Yeti')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">20: Yeti</button>
-                                <button type="button" onclick="quickFillMonster(2, 21, 'Elite Yeti')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">21: Elite Yeti</button>
-                                <button type="button" onclick="quickFillMonster(2, 23, 'Ice Queen')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">23: Ice Queen</button>
+                                <button type="button" onclick="quickFillMonster(2, 19, 'Yeti')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">19: Yeti</button>
+                                <button type="button" onclick="quickFillMonster(2, 20, 'Elite Yeti')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">20: Elite Yeti</button>
+                                <button type="button" onclick="quickFillMonster(2, 21, 'Assassin')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">21: Assassin</button>
+                                <button type="button" onclick="quickFillMonster(2, 22, 'Ice Monster')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">22: Ice Monster</button>
+                                <button type="button" onclick="quickFillMonster(2, 23, 'Homunculus')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">23: Homunculus</button>
+                                <button type="button" onclick="quickFillMonster(2, 25, 'Ice Queen')" class="px-2 py-1 bg-mu-border/40 hover:bg-cyan-500 hover:text-black rounded text-[11px] font-mono transition">25: Ice Queen</button>
                             </div>
                         </div>
 
-                        <!-- Losttower / Tarkan -->
+                        <!-- Noria -->
                         <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
-                            <span class="text-xs font-bold text-orange-400 block mb-1.5"><i class="fa-solid fa-fire"></i> Losttower & Tarkan</span>
+                            <span class="text-xs font-bold text-green-400 block mb-1.5"><i class="fa-solid fa-tree"></i> Noria (Map 3)</span>
                             <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="quickFillMonster(4, 38, 'Balrog')" class="px-2 py-1 bg-mu-border/40 hover:bg-orange-500 hover:text-black rounded text-[11px] font-mono transition">38: Balrog (LT7)</button>
-                                <button type="button" onclick="quickFillMonster(8, 57, 'Iron Wheel')" class="px-2 py-1 bg-mu-border/40 hover:bg-orange-500 hover:text-black rounded text-[11px] font-mono transition">57: Iron Wheel</button>
-                                <button type="button" onclick="quickFillMonster(8, 62, 'Zaikan')" class="px-2 py-1 bg-mu-border/40 hover:bg-orange-500 hover:text-black rounded text-[11px] font-mono transition">62: Zaikan</button>
+                                <button type="button" onclick="quickFillMonster(3, 26, 'Goblin')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">26: Goblin</button>
+                                <button type="button" onclick="quickFillMonster(3, 27, 'Chain Scorpion')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">27: Scorpion</button>
+                                <button type="button" onclick="quickFillMonster(3, 28, 'Beetle Monster')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">28: Beetle</button>
+                                <button type="button" onclick="quickFillMonster(3, 29, 'Hunter')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">29: Hunter</button>
+                                <button type="button" onclick="quickFillMonster(3, 30, 'Forest Orc')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">30: Forest Orc</button>
+                                <button type="button" onclick="quickFillMonster(3, 31, 'Agoni')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">31: Agoni</button>
+                                <button type="button" onclick="quickFillMonster(3, 32, 'Stone Golem')" class="px-2 py-1 bg-mu-border/40 hover:bg-green-500 hover:text-black rounded text-[11px] font-mono transition">32: Stone Golem</button>
+                            </div>
+                        </div>
+
+                        <!-- Losttower -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-red-400 block mb-1.5"><i class="fa-solid fa-dungeon"></i> Losttower (Map 4)</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(4, 34, 'Shadow')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">34: Shadow</button>
+                                <button type="button" onclick="quickFillMonster(4, 35, 'Poison Shadow')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">35: Poison Shadow</button>
+                                <button type="button" onclick="quickFillMonster(4, 36, 'Cursed Wizard')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">36: Cursed Wiz</button>
+                                <button type="button" onclick="quickFillMonster(4, 37, 'Death Gorgon')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">37: Death Gorgon</button>
+                                <button type="button" onclick="quickFillMonster(4, 38, 'Balrog')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">38: Balrog</button>
+                                <button type="button" onclick="quickFillMonster(4, 39, 'Devil')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">39: Devil</button>
+                                <button type="button" onclick="quickFillMonster(4, 40, 'Death Knight')" class="px-2 py-1 bg-mu-border/40 hover:bg-red-500 hover:text-black rounded text-[11px] font-mono transition">40: Death Knight</button>
+                            </div>
+                        </div>
+
+                        <!-- Atlans -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-blue-400 block mb-1.5"><i class="fa-solid fa-water"></i> Atlans (Map 7)</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(7, 45, 'Bahamut')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">45: Bahamut</button>
+                                <button type="button" onclick="quickFillMonster(7, 46, 'Vepar')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">46: Vepar</button>
+                                <button type="button" onclick="quickFillMonster(7, 47, 'Valkyrie')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">47: Valkyrie</button>
+                                <button type="button" onclick="quickFillMonster(7, 48, 'Gorgon Hydro')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">48: Gorgon Hydro</button>
+                                <button type="button" onclick="quickFillMonster(7, 49, 'Lizard King')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">49: Lizard King</button>
+                                <button type="button" onclick="quickFillMonster(7, 50, 'Hydra')" class="px-2 py-1 bg-mu-border/40 hover:bg-blue-500 hover:text-black rounded text-[11px] font-mono transition">50: Hydra</button>
+                            </div>
+                        </div>
+
+                        <!-- Tarkan -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-yellow-500 block mb-1.5"><i class="fa-solid fa-sun"></i> Tarkan (Map 8)</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(8, 57, 'Mutant')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">57: Mutant</button>
+                                <button type="button" onclick="quickFillMonster(8, 58, 'Bloody Rider')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">58: Bloody Rider</button>
+                                <button type="button" onclick="quickFillMonster(8, 59, 'Iron Wheel')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">59: Iron Wheel</button>
+                                <button type="button" onclick="quickFillMonster(8, 60, 'Tantalus')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">60: Tantalus</button>
+                                <button type="button" onclick="quickFillMonster(8, 61, 'Beam Knight')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">61: Beam Knight</button>
+                                <button type="button" onclick="quickFillMonster(8, 62, 'Zaikan')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">62: Zaikan</button>
+                                <button type="button" onclick="quickFillMonster(8, 63, 'Death Beam Knight')" class="px-2 py-1 bg-mu-border/40 hover:bg-yellow-500 hover:text-black rounded text-[11px] font-mono transition">63: Death Beam</button>
+                            </div>
+                        </div>
+
+                        <!-- Icarus -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-sky-400 block mb-1.5"><i class="fa-solid fa-cloud"></i> Icarus (Map 10)</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(10, 70, 'Queen Ranroo')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">70: Ranroo</button>
+                                <button type="button" onclick="quickFillMonster(10, 71, 'Drakan')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">71: Drakan</button>
+                                <button type="button" onclick="quickFillMonster(10, 72, 'Alpha Crust')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">72: Alpha Crust</button>
+                                <button type="button" onclick="quickFillMonster(10, 73, 'Phantom Knight')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">73: Phantom Knight</button>
+                                <button type="button" onclick="quickFillMonster(10, 74, 'Great Drakan')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">74: Great Drakan</button>
+                                <button type="button" onclick="quickFillMonster(10, 75, 'Phoenix of Darkness')" class="px-2 py-1 bg-mu-border/40 hover:bg-sky-500 hover:text-black rounded text-[11px] font-mono transition">75: Phoenix</button>
+                            </div>
+                        </div>
+
+                        <!-- Aida & Kanturu -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-emerald-400 block mb-1.5"><i class="fa-solid fa-gear"></i> Aida & Kanturu</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(33, 304, 'Trees')" class="px-2 py-1 bg-mu-border/40 hover:bg-emerald-500 hover:text-black rounded text-[11px] font-mono transition">304: Trees (Aida)</button>
+                                <button type="button" onclick="quickFillMonster(33, 309, 'Hell Spider')" class="px-2 py-1 bg-mu-border/40 hover:bg-emerald-500 hover:text-black rounded text-[11px] font-mono transition">309: Hell Spider</button>
+                                <button type="button" onclick="quickFillMonster(37, 340, 'Persona')" class="px-2 py-1 bg-mu-border/40 hover:bg-emerald-500 hover:text-black rounded text-[11px] font-mono transition">340: Persona</button>
+                                <button type="button" onclick="quickFillMonster(37, 341, 'Twin Tale')" class="px-2 py-1 bg-mu-border/40 hover:bg-emerald-500 hover:text-black rounded text-[11px] font-mono transition">341: Twin Tale</button>
+                                <button type="button" onclick="quickFillMonster(37, 344, 'Dreadfear')" class="px-2 py-1 bg-mu-border/40 hover:bg-emerald-500 hover:text-black rounded text-[11px] font-mono transition">344: Dreadfear</button>
+                            </div>
+                        </div>
+
+                        <!-- Raklion & Crywolf -->
+                        <div class="bg-mu-dark/60 p-2.5 rounded-xl border border-mu-border/60">
+                            <span class="text-xs font-bold text-indigo-400 block mb-1.5"><i class="fa-solid fa-mountain"></i> Crywolf & Raklion</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="quickFillMonster(34, 310, 'Werewolf')" class="px-2 py-1 bg-mu-border/40 hover:bg-indigo-500 hover:text-black rounded text-[11px] font-mono transition">310: Werewolf</button>
+                                <button type="button" onclick="quickFillMonster(34, 349, 'Balgass')" class="px-2 py-1 bg-mu-border/40 hover:bg-indigo-500 hover:text-black rounded text-[11px] font-mono transition">349: Balgass</button>
+                                <button type="button" onclick="quickFillMonster(57, 457, 'Ice Giant')" class="px-2 py-1 bg-mu-border/40 hover:bg-indigo-500 hover:text-black rounded text-[11px] font-mono transition">457: Ice Giant</button>
+                                <button type="button" onclick="quickFillMonster(57, 458, 'Coolutin')" class="px-2 py-1 bg-mu-border/40 hover:bg-indigo-500 hover:text-black rounded text-[11px] font-mono transition">458: Coolutin</button>
+                                <button type="button" onclick="quickFillMonster(57, 459, 'Selupan')" class="px-2 py-1 bg-mu-border/40 hover:bg-indigo-500 hover:text-black rounded text-[11px] font-mono transition">459: Selupan</button>
                             </div>
                         </div>
                     </div>
@@ -509,6 +625,14 @@
             generateCode();
         });
 
+        // Smooth Scroll with Section ID
+        function scrollToSection(sectionId) {
+            const el = document.getElementById(sectionId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         // Toggle Preset vs Custom Map ID
         function onMapPresetChange() {
             const presetSelect = document.getElementById('mapPreset');
@@ -672,188 +796,4 @@
             document.getElementById('group').value = spot.group;
             document.getElementById('monsterId').value = spot.monsterId;
             document.getElementById('mapPreset').value = spot.map in MAP_NAMES ? spot.map : "-1";
-            document.getElementById('mapCustom').value = spot.map;
-            document.getElementById('startX').value = spot.startX;
-            document.getElementById('startY').value = spot.startY;
-            document.getElementById('endX').value = spot.endX;
-            document.getElementById('endY').value = spot.endY;
-            document.getElementById('distance').value = spot.distance;
-            document.getElementById('direction').value = spot.direction;
-            document.getElementById('quantity').value = spot.quantity;
-            document.getElementById('description').value = spot.description;
-
-            document.getElementById('form-title').textContent = "Editar Spot Configurado";
-            document.getElementById('btnSaveText').textContent = "Guardar Cambios";
-            document.getElementById('edit-badge').classList.remove('hidden');
-            document.getElementById('btnCancelEdit').classList.remove('hidden');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Cancel Edit Mode
-        function cancelEdit() {
-            document.getElementById('editingId').value = '';
-            document.getElementById('form-title').textContent = "Agregar Nuevo Spot / Monstruo";
-            document.getElementById('btnSaveText').textContent = "Agregar a la Lista";
-            document.getElementById('edit-badge').classList.add('hidden');
-            document.getElementById('btnCancelEdit').classList.add('hidden');
-            document.getElementById('spotForm').reset();
-            onMapPresetChange();
-        }
-
-        // Delete Spot
-        function deleteSpot(id) {
-            spots = spots.filter(s => s.id !== id);
-            renderTable();
-            generateCode();
-            showToast("Spot eliminado", "info");
-        }
-
-        // Clear All
-        function clearAllSpots() {
-            if (spots.length === 0) return;
-            if (confirm("¿Estás seguro de que deseas borrar todos los spots de la lista?")) {
-                spots = [];
-                renderTable();
-                generateCode();
-                showToast("Lista de spots vaciada", "info");
-            }
-        }
-
-        // Generate Formatted Code output
-        function generateCode() {
-            const textarea = document.getElementById('codeOutput');
-
-            let code = `//========================================================================================\n`;
-            code += `// MuEmu MonsterSetBase.txt - Generado Automáticamente\n`;
-            code += `//========================================================================================\n\n`;
-
-            // Group 0 Spots
-            const group0 = spots.filter(s => s.group === 0);
-            if (group0.length > 0) {
-                code += `//========================================================================================\n`;
-                code += `// Group  Monster  Map  Dis  StartX  StartY  EndX  EndY  Dir  Quant  Comment\n`;
-                code += `//========================================================================================\n`;
-                code += `0\n`;
-                group0.forEach(s => {
-                    code += `${pad(s.group, 5)}${pad(s.monsterId, 8)}${pad(s.map, 6)}${pad(s.distance, 5)}${pad(s.startX, 7)}${pad(s.startY, 7)}${pad(s.endX, 6)}${pad(s.endY, 6)}${pad(s.direction, 5)}${pad(s.quantity, 6)}  // ${s.description}\n`;
-                });
-                code += `end\n\n`;
-            }
-
-            // Group 1 Spots
-            const group1 = spots.filter(s => s.group === 1);
-            if (group1.length > 0) {
-                code += `//========================================================================================\n`;
-                code += `// Group  Monster  Map  Dis  StartX  StartY  EndX  EndY  Dir  Quant  Comment\n`;
-                code += `//========================================================================================\n`;
-                code += `1\n`;
-                group1.forEach(s => {
-                    code += `${pad(s.group, 5)}${pad(s.monsterId, 8)}${pad(s.map, 6)}${pad(s.distance, 5)}${pad(s.startX, 7)}${pad(s.startY, 7)}${pad(s.endX, 6)}${pad(s.endY, 6)}${pad(s.direction, 5)}${pad(s.quantity, 6)}  // ${s.description}\n`;
-                });
-                code += `end\n\n`;
-            }
-
-            // Other Groups (2, 3, etc.)
-            const others = spots.filter(s => s.group > 1);
-            if (others.length > 0) {
-                code += `//========================================================================================\n`;
-                code += `// Group  Monster  Map  Dis  StartX  StartY  EndX  EndY  Dir  Quant  Comment\n`;
-                code += `//========================================================================================\n`;
-                code += `2\n`;
-                others.forEach(s => {
-                    code += `${pad(s.group, 5)}${pad(s.monsterId, 8)}${pad(s.map, 6)}${pad(s.distance, 5)}${pad(s.startX, 7)}${pad(s.startY, 7)}${pad(s.endX, 6)}${pad(s.endY, 6)}${pad(s.direction, 5)}${pad(s.quantity, 6)}  // ${s.description}\n`;
-                });
-                code += `end\n\n`;
-            }
-
-            if (spots.length === 0) {
-                code = `// Agrega spots utilizando el formulario superior para ver el código generado aquí.`;
-            }
-
-            textarea.value = code;
-        }
-
-        // Helper for aligned text tabulating
-        function pad(val, width) {
-            const str = String(val);
-            return str.padStart(width, ' ');
-        }
-
-        // Copy Code to Clipboard
-        function copyToClipboard() {
-            const textarea = document.getElementById('codeOutput');
-            if (spots.length === 0) {
-                showToast("No hay código para copiar", "warning");
-                return;
-            }
-
-            // Fallback clipboard logic
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                showToast("¡Código copiado al portapapeles!", "success");
-            } catch (err) {
-                showToast("Error al copiar código", "warning");
-            }
-        }
-
-        // Download .txt file
-        function downloadFile() {
-            const code = document.getElementById('codeOutput').value;
-            if (spots.length === 0) {
-                showToast("No hay spots configurados para descargar", "warning");
-                return;
-            }
-
-            const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'MonsterSetBase.txt';
-            link.click();
-            URL.revokeObjectURL(link.href);
-
-            showToast("Archivo MonsterSetBase.txt descargado", "success");
-        }
-
-        // Load Pre-configured Sample Spots
-        function loadSampleData() {
-            spots = [
-                { id: 101, group: 0, monsterId: 247, map: 0, startX: 114, startY: 141, endX: 114, endY: 141, distance: 0, direction: 1, quantity: 1, description: 'NPC Han Blacksmith Lorencia' },
-                { id: 102, group: 1, monsterId: 2, map: 0, startX: 120, startY: 120, endX: 128, endY: 128, distance: 3, direction: -1, quantity: 8, description: 'Spot 8x Lich Lorencia' },
-                { id: 103, group: 1, monsterId: 20, map: 2, startX: 190, startY: 25, endX: 195, endY: 30, distance: 3, direction: -1, quantity: 10, description: 'Spot 10x Yeti Devias' },
-                { id: 104, group: 1, monsterId: 38, map: 4, startX: 80, startY: 160, endX: 85, endY: 165, distance: 3, direction: -1, quantity: 6, description: 'Spot 6x Balrog Losttower 7' }
-            ];
-
-            renderTable();
-            generateCode();
-            showToast("Ejemplo de spots cargado exitosamente", "success");
-        }
-
-        // Helper Toast Notification System
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-msg');
-            const toastIcon = document.getElementById('toast-icon');
-
-            toastMsg.textContent = message;
-
-            if (type === 'success') {
-                toastIcon.className = "fa-solid fa-circle-check text-green-400 text-lg";
-            } else if (type === 'warning') {
-                toastIcon.className = "fa-solid fa-circle-exclamation text-yellow-400 text-lg";
-            } else {
-                toastIcon.className = "fa-solid fa-circle-info text-mu-gold text-lg";
-            }
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('mapCustom').value
