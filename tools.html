@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuEmu Config - Toolkit</title>
+    <title>Panel de Herramientas - MuEmu Config</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -28,12 +28,18 @@
 <body class="min-h-screen flex flex-col font-sans">
 
     <!-- Barra de Navegación -->
-    <nav class="bg-slate-900 border-b border-slate-700 shadow-lg">
+    <nav class="bg-slate-900 border-b border-slate-700 shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-2xl font-bold text-purple-400">MuEmu</span>
-                    <span class="text-2xl font-bold text-white ml-1">Config</span>
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold text-purple-400">MuEmu</span>
+                        <span class="text-2xl font-bold text-white ml-1">Config</span>
+                    </a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="index.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition">Inicio</a>
+                    <a href="tools.html" class="text-white bg-slate-800 px-3 py-2 rounded-md text-sm font-medium">Herramientas</a>
                 </div>
             </div>
         </div>
@@ -46,7 +52,7 @@
                 Panel de <span class="text-purple-400">Herramientas</span>
             </h1>
             <p class="text-slate-400 text-lg">
-                Utilidades para la configuración rápida y sin errores de servidores MuOnline (MuEmu).
+                Seleccioná la utilidad que necesites para configurar tu servidor MuOnline rápidamente.
             </p>
         </div>
 
@@ -71,7 +77,25 @@
                 </a>
             </div>
 
-            <!-- Tarjeta Futura Herramienta -->
+            <!-- Tarjeta 2: Editor de Shops -->
+            <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-cyan-500/20 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/30">
+                            Shops System
+                        </span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Editor de Shops</h2>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Configura ítems, niveles, durabilidad y opciones excelentes para tiendas NPC en <code class="text-purple-300 font-mono text-xs">Shop0.txt</code> o <code class="text-purple-300 font-mono text-xs">ShopManager.txt</code>.
+                    </p>
+                </div>
+                <a href="muemu-shop.html" class="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200">
+                    Abrir Herramienta
+                </a>
+            </div>
+
+            <!-- Tarjeta 3: Próximamente -->
             <div class="card rounded-2xl p-6 border border-slate-800 shadow-xl flex flex-col justify-between opacity-60">
                 <div>
                     <div class="flex items-center justify-between mb-4">
@@ -79,9 +103,9 @@
                             Próximamente
                         </span>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-300 mb-2">Editor de Shops</h2>
+                    <h2 class="text-2xl font-bold text-slate-300 mb-2">Creador de Spots</h2>
                     <p class="text-slate-500 text-sm mb-6">
-                        Configuración de tiendas y vendedores NPCs.
+                        Configuración de coordenadas, monstruos y regeneración para <code class="text-slate-400 font-mono text-xs">MonsterSetBase.txt</code>.
                     </p>
                 </div>
                 <button disabled class="block w-full text-center bg-slate-800 text-slate-500 font-bold py-3 px-4 rounded-xl cursor-not-allowed">
