@@ -25,9 +25,25 @@
         ::-webkit-scrollbar-track { background: #0a0a0f; }
         ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        
+        /* Botón Agregar con estallido violeta */
         .btn-glow { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); transition: all 0.2s; }
         .btn-glow:hover { box-shadow: 0 0 25px rgba(168, 85, 247, 0.7); transform: translateY(-1px); }
         .btn-glow:active { transform: scale(0.98); }
+
+        /* Botón Inicio con estallido azul a fucsia */
+        .btn-glow-blue {
+            background-color: #0891b2; color: #ffffff;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-glow-blue:hover {
+            background-color: #0e7490; box-shadow: 0 0 6px rgba(6, 182, 212, 0.3); opacity: 0.9;
+        }
+        .btn-glow-blue:active {
+            background-color: #c026d3 !important; box-shadow: 0 0 25px rgba(217, 70, 239, 0.9) !important; transform: scale(0.95);
+        }
+
         .hidden-safe { display: none !important; }
     </style>
 </head>
@@ -45,8 +61,10 @@
                     <p class="text-xs text-gray-400 font-mono">Generador Avanzado In-Game</p>
                 </div>
             </div>
-            <a href="../index.html" class="px-3 py-1.5 text-sm font-bold bg-mu-border rounded-lg hover:text-mu-gold transition">
-                <i class="fa-solid fa-house mr-1"></i> Inicio
+            <!-- Botón Inicio Actualizado -->
+            <a href="/Rep-muemu-config/index.html" class="btn-glow-blue px-3 py-1.5 text-sm font-bold rounded-lg flex items-center space-x-2">
+                <i class="fa-solid fa-house"></i>
+                <span class="hidden sm:inline">Inicio</span>
             </a>
         </div>
     </header>
@@ -103,8 +121,9 @@
                                 <select id="itemType" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-blue-400 outline-none">
                                     <option value="0">0 - Espadas (Swords)</option>
                                     <option value="1">1 - Hachas (Axes)</option>
-                                    <option value="2">2 - Mazos (Maces)</option>
-                                    <option value="4">4 - Arcos (Bows/Crossbows)</option>
+                                    <option value="2">2 - Mazos/Cetros (Maces)</option>
+                                    <option value="3">3 - Lanzas (Spears)</option>
+                                    <option value="4">4 - Arcos/Ballestas (Bows)</option>
                                     <option value="5">5 - Bastones (Staffs)</option>
                                     <option value="6">6 - Escudos (Shields)</option>
                                     <option value="7">7 - Cascos (Helms)</option>
@@ -241,22 +260,136 @@
     </main>
 
     <script>
+        // BASE DE DATOS EXTENSA DEL MU ONLINE (S1 a S9+ base)
         const ITEM_DB = {
-            0: [{id: 0, name: "Kris"}, {id: 22, name: "Bone Blade"}, {id: 31, name: "XP Sword"}, {id: 35, name: "Daybreak"}],
-            1: [{id: 0, name: "Small Axe"}, {id: 17, name: "Rune Blade"}],
-            2: [{id: 0, name: "Mace"}, {id: 11, name: "Lord Scepter"}, {id: 14, name: "Mace of the King"}],
-            4: [{id: 0, name: "Short Bow"}, {id: 17, name: "Albatross Bow"}, {id: 20, name: "Viper Bow"}],
-            5: [{id: 8, name: "Staff of Destruction"}, {id: 11, name: "Kundun Staff"}, {id: 12, name: "Platina Wing Staff"}],
-            6: [{id: 0, name: "Small Shield"}, {id: 11, name: "Dragon Shield"}, {id: 15, name: "Crimson Glory Shield"}],
-            7: [{id: 0, name: "Pad Helm"}, {id: 11, name: "Dragon Helm"}, {id: 21, name: "Great Dragon Helm"}, {id: 29, name: "Dark Soul Helm"}],
-            8: [{id: 0, name: "Pad Armor"}, {id: 11, name: "Dragon Armor"}, {id: 21, name: "Great Dragon Armor"}, {id: 29, name: "Dark Soul Armor"}],
-            9: [{id: 0, name: "Pad Pants"}, {id: 11, name: "Dragon Pants"}, {id: 21, name: "Great Dragon Pants"}, {id: 29, name: "Dark Soul Pants"}],
-            10: [{id: 0, name: "Pad Gloves"}, {id: 11, name: "Dragon Gloves"}, {id: 21, name: "Great Dragon Gloves"}, {id: 29, name: "Dark Soul Gloves"}],
-            11: [{id: 0, name: "Pad Boots"}, {id: 11, name: "Dragon Boots"}, {id: 21, name: "Great Dragon Boots"}, {id: 29, name: "Dark Soul Boots"}],
-            12: [{id: 3, name: "Wings of Spirits"}, {id: 5, name: "Wings of Dragon"}, {id: 36, name: "Cape of Lord"}, {id: 38, name: "Wings of Hurricane"}],
-            13: [{id: 0, name: "Guardian Angel"}, {id: 4, name: "Dark Horse"}, {id: 5, name: "Dark Raven"}, {id: 20, name: "Wizards Ring"}, {id: 37, name: "Fenrir"}],
-            14: [{id: 13, name: "Jewel of Bless"}, {id: 14, name: "Jewel of Soul"}, {id: 16, name: "Jewel of Life"}, {id: 15, name: "Jewel of Chaos"}, {id: 42, name: "Jewel of Harmony"}],
-            15: [{id: 9, name: "Scroll of Evil Spirit"}, {id: 17, name: "Scroll of Ice Storm"}, {id: 18, name: "Scroll of Nova"}]
+            0: [ // ESPADAS (Swords)
+                {id: 0, name: "Kris"}, {id: 1, name: "Short Sword"}, {id: 2, name: "Rapier"}, {id: 3, name: "Katana"},
+                {id: 4, name: "Sword of Assassin"}, {id: 5, name: "Blade"}, {id: 6, name: "Gladius"}, {id: 7, name: "Falchion"},
+                {id: 8, name: "Serpent Sword"}, {id: 9, name: "Salamander Sword"}, {id: 10, name: "Light Saber"}, {id: 11, name: "Legendary Sword"},
+                {id: 12, name: "Heliacal Sword"}, {id: 13, name: "Double Blade"}, {id: 14, name: "Lightning Sword"}, {id: 15, name: "Giant Sword"},
+                {id: 16, name: "Sword of Destruction"}, {id: 17, name: "Dark Reign Blade"}, {id: 18, name: "Thunder Blade"}, {id: 19, name: "Archangel Sword"},
+                {id: 20, name: "Knight Blade"}, {id: 22, name: "Bone Blade"}, {id: 23, name: "Explosion Blade"}, {id: 24, name: "Daybreak"},
+                {id: 25, name: "Sword of Dancer"}, {id: 31, name: "Rune Bastard Sword"}
+            ],
+            1: [ // HACHAS (Axes)
+                {id: 0, name: "Small Axe"}, {id: 1, name: "Hand Axe"}, {id: 2, name: "Double Axe"}, {id: 3, name: "Tomahawk"},
+                {id: 4, name: "Elven Axe"}, {id: 5, name: "Battle Axe"}, {id: 6, name: "Nikkea Axe"}, {id: 7, name: "Larkan Axe"},
+                {id: 8, name: "Crescent Axe"}
+            ],
+            2: [ // MAZOS Y CETROS (Maces & Scepters)
+                {id: 0, name: "Mace"}, {id: 1, name: "Morning Star"}, {id: 2, name: "Flail"}, {id: 3, name: "Great Hammer"},
+                {id: 4, name: "Crystal Mace"}, {id: 5, name: "Crystal Morning Star"}, {id: 6, name: "Chaos Dragon Mace"},
+                {id: 7, name: "Elemental Mace"}, {id: 8, name: "Battle Scepter"}, {id: 9, name: "Master Scepter"},
+                {id: 10, name: "Great Lord Scepter"}, {id: 11, name: "Lord Scepter"}, {id: 12, name: "Archangel Scepter"},
+                {id: 13, name: "Shining Scepter"}, {id: 14, name: "Mace of the King"}, {id: 15, name: "Frost Mace"},
+                {id: 16, name: "Absolute Scepter"}, {id: 17, name: "Striker Scepter"}
+            ],
+            3: [ // LANZAS (Spears)
+                {id: 0, name: "Light Spear"}, {id: 1, name: "Spear"}, {id: 2, name: "Dragon Lance"}, {id: 3, name: "Giant Trident"},
+                {id: 4, name: "Serpent Spear"}, {id: 5, name: "Double Poleaxe"}, {id: 6, name: "Halberd"}, {id: 7, name: "Berdysh"},
+                {id: 8, name: "Great Trident"}, {id: 9, name: "Bill of Balrog"}, {id: 10, name: "Dragon Spear"}, {id: 11, name: "Brova"}
+            ],
+            4: [ // ARCOS Y BALLESTAS (Bows/Crossbows)
+                {id: 0, name: "Short Bow"}, {id: 1, name: "Bow"}, {id: 2, name: "Elven Bow"}, {id: 3, name: "Battle Bow"},
+                {id: 4, name: "Tiger Bow"}, {id: 5, name: "Silver Bow"}, {id: 6, name: "Chaos Nature Bow"}, {id: 7, name: "Celestial Bow"},
+                {id: 8, name: "Crossbow"}, {id: 9, name: "Golden Crossbow"}, {id: 10, name: "Arquebus"}, {id: 11, name: "Light Crossbow"},
+                {id: 12, name: "Serpent Crossbow"}, {id: 13, name: "Bluewing Crossbow"}, {id: 14, name: "Aquagold Crossbow"}, 
+                {id: 15, name: "Saint Crossbow"}, {id: 16, name: "Great Reign Crossbow"}, {id: 17, name: "Albatross Bow"}, 
+                {id: 18, name: "Archangel Bow"}, {id: 19, name: "Sylph Wind Bow"}, {id: 20, name: "Viper Bow"}, {id: 21, name: "Aileen Bow"}
+            ],
+            5: [ // BASTONES (Staffs)
+                {id: 0, name: "Skull Staff"}, {id: 1, name: "Angelic Staff"}, {id: 2, name: "Serpent Staff"}, {id: 3, name: "Thunder Staff"},
+                {id: 4, name: "Gorgon Staff"}, {id: 5, name: "Legendary Staff"}, {id: 6, name: "Resurrection Staff"}, {id: 7, name: "Chaos Lightning Staff"},
+                {id: 8, name: "Staff of Destruction"}, {id: 9, name: "Dragon Soul Staff"}, {id: 10, name: "Archangel Staff"}, 
+                {id: 11, name: "Kundun Staff"}, {id: 12, name: "Platina Wing Staff"}, {id: 13, name: "Viper Staff"}, {id: 14, name: "Imperial Staff"}
+            ],
+            6: [ // ESCUDOS (Shields)
+                {id: 0, name: "Small Shield"}, {id: 1, name: "Horn Shield"}, {id: 2, name: "Kite Shield"}, {id: 3, name: "Elven Shield"},
+                {id: 4, name: "Buckler"}, {id: 5, name: "Skull Shield"}, {id: 6, name: "Spiked Shield"}, {id: 7, name: "Tower Shield"},
+                {id: 8, name: "Plate Shield"}, {id: 9, name: "Large Round Shield"}, {id: 10, name: "Serpent Shield"}, {id: 11, name: "Dragon Shield"},
+                {id: 12, name: "Legendary Shield"}, {id: 13, name: "Grand Soul Shield"}, {id: 14, name: "Chaos Dragon Shield"}, 
+                {id: 15, name: "Crimson Glory Shield"}, {id: 16, name: "Salamander Shield"}, {id: 17, name: "Frost Shield"}
+            ],
+            7: [ // CASCOS (Helms)
+                {id: 0, name: "Pad Helm"}, {id: 1, name: "Bone Helm"}, {id: 2, name: "Sphinx Helm"}, {id: 4, name: "Legendary Helm"},
+                {id: 5, name: "Leather Helm"}, {id: 6, name: "Bronze Helm"}, {id: 7, name: "Scale Helm"}, {id: 8, name: "Brass Helm"},
+                {id: 9, name: "Plate Helm"}, {id: 10, name: "Vine Helm"}, {id: 11, name: "Silk Helm"}, {id: 12, name: "Wind Helm"},
+                {id: 13, name: "Spirit Helm"}, {id: 14, name: "Guardian Helm"}, {id: 16, name: "Black Dragon Helm"}, {id: 17, name: "Dark Phoenix Helm"},
+                {id: 18, name: "Divine Helm"}, {id: 19, name: "Grand Soul Helm"}, {id: 21, name: "Great Dragon Helm"}, {id: 22, name: "Dark Soul Helm"},
+                {id: 24, name: "Red Spirit Helm"}, {id: 26, name: "Light Plate Helm"}, {id: 27, name: "Adamantine Helm"}, {id: 29, name: "Dragon Knight Helm"},
+                {id: 30, name: "Venom Mist Helm"}, {id: 31, name: "Sylpid Ray Helm"}, {id: 33, name: "Sunlight Helm"}, {id: 45, name: "Titan Helm"},
+                {id: 46, name: "Brave Helm"}, {id: 47, name: "Phantom Helm"}, {id: 48, name: "Hades Helm"}, {id: 50, name: "Seraphim Helm"}
+            ],
+            8: [ // ARMADURAS (Armors)
+                {id: 0, name: "Pad Armor"}, {id: 1, name: "Bone Armor"}, {id: 2, name: "Sphinx Armor"}, {id: 4, name: "Legendary Armor"},
+                {id: 5, name: "Leather Armor"}, {id: 6, name: "Bronze Armor"}, {id: 7, name: "Scale Armor"}, {id: 8, name: "Brass Armor"},
+                {id: 9, name: "Plate Armor"}, {id: 10, name: "Vine Armor"}, {id: 11, name: "Silk Armor"}, {id: 12, name: "Wind Armor"},
+                {id: 13, name: "Spirit Armor"}, {id: 14, name: "Guardian Armor"}, {id: 15, name: "Storm Crow Armor"}, {id: 16, name: "Black Dragon Armor"},
+                {id: 17, name: "Dark Phoenix Armor"}, {id: 18, name: "Divine Armor"}, {id: 19, name: "Grand Soul Armor"}, {id: 20, name: "Thunder Hawk Armor"},
+                {id: 21, name: "Great Dragon Armor"}, {id: 22, name: "Dark Soul Armor"}, {id: 23, name: "Hurricane Armor"}, {id: 24, name: "Red Spirit Armor"},
+                {id: 26, name: "Light Plate Armor"}, {id: 27, name: "Adamantine Armor"}, {id: 28, name: "Dark Steel Armor"}, {id: 29, name: "Dragon Knight Armor"},
+                {id: 30, name: "Venom Mist Armor"}, {id: 31, name: "Sylpid Ray Armor"}, {id: 32, name: "Volcano Armor"}, {id: 33, name: "Sunlight Armor"},
+                {id: 45, name: "Titan Armor"}, {id: 46, name: "Brave Armor"}, {id: 47, name: "Phantom Armor"}, {id: 48, name: "Hades Armor"}, {id: 50, name: "Seraphim Armor"}
+            ],
+            9: [ // PANTALONES (Pants)
+                {id: 0, name: "Pad Pants"}, {id: 1, name: "Bone Pants"}, {id: 2, name: "Sphinx Pants"}, {id: 4, name: "Legendary Pants"},
+                {id: 5, name: "Leather Pants"}, {id: 6, name: "Bronze Pants"}, {id: 7, name: "Scale Pants"}, {id: 8, name: "Brass Pants"},
+                {id: 9, name: "Plate Pants"}, {id: 10, name: "Vine Pants"}, {id: 11, name: "Silk Pants"}, {id: 12, name: "Wind Pants"},
+                {id: 13, name: "Spirit Pants"}, {id: 14, name: "Guardian Pants"}, {id: 15, name: "Storm Crow Pants"}, {id: 16, name: "Black Dragon Pants"},
+                {id: 17, name: "Dark Phoenix Pants"}, {id: 18, name: "Divine Pants"}, {id: 19, name: "Grand Soul Pants"}, {id: 20, name: "Thunder Hawk Pants"},
+                {id: 21, name: "Great Dragon Pants"}, {id: 22, name: "Dark Soul Pants"}, {id: 23, name: "Hurricane Pants"}, {id: 24, name: "Red Spirit Pants"},
+                {id: 26, name: "Light Plate Pants"}, {id: 27, name: "Adamantine Pants"}, {id: 28, name: "Dark Steel Pants"}, {id: 29, name: "Dragon Knight Pants"},
+                {id: 30, name: "Venom Mist Pants"}, {id: 31, name: "Sylpid Ray Pants"}, {id: 32, name: "Volcano Pants"}, {id: 33, name: "Sunlight Pants"},
+                {id: 45, name: "Titan Pants"}, {id: 46, name: "Brave Pants"}, {id: 47, name: "Phantom Pants"}, {id: 48, name: "Hades Pants"}, {id: 50, name: "Seraphim Pants"}
+            ],
+            10: [ // GUANTES (Gloves)
+                {id: 0, name: "Pad Gloves"}, {id: 1, name: "Bone Gloves"}, {id: 2, name: "Sphinx Gloves"}, {id: 4, name: "Legendary Gloves"},
+                {id: 5, name: "Leather Gloves"}, {id: 6, name: "Bronze Gloves"}, {id: 7, name: "Scale Gloves"}, {id: 8, name: "Brass Gloves"},
+                {id: 9, name: "Plate Gloves"}, {id: 10, name: "Vine Gloves"}, {id: 11, name: "Silk Gloves"}, {id: 12, name: "Wind Gloves"},
+                {id: 13, name: "Spirit Gloves"}, {id: 14, name: "Guardian Gloves"}, {id: 15, name: "Storm Crow Gloves"}, {id: 16, name: "Black Dragon Gloves"},
+                {id: 17, name: "Dark Phoenix Gloves"}, {id: 18, name: "Divine Gloves"}, {id: 19, name: "Grand Soul Gloves"}, {id: 20, name: "Thunder Hawk Gloves"},
+                {id: 21, name: "Great Dragon Gloves"}, {id: 22, name: "Dark Soul Gloves"}, {id: 23, name: "Hurricane Gloves"}, {id: 24, name: "Red Spirit Gloves"},
+                {id: 26, name: "Light Plate Gloves"}, {id: 27, name: "Adamantine Gloves"}, {id: 28, name: "Dark Steel Gloves"}, {id: 29, name: "Dragon Knight Gloves"},
+                {id: 30, name: "Venom Mist Gloves"}, {id: 31, name: "Sylpid Ray Gloves"}, {id: 32, name: "Volcano Gloves"}, {id: 33, name: "Sunlight Gloves"},
+                {id: 45, name: "Titan Gloves"}, {id: 46, name: "Brave Gloves"}, {id: 47, name: "Phantom Gloves"}, {id: 48, name: "Hades Gloves"}, {id: 50, name: "Seraphim Gloves"}
+            ],
+            11: [ // BOTAS (Boots)
+                {id: 0, name: "Pad Boots"}, {id: 1, name: "Bone Boots"}, {id: 2, name: "Sphinx Boots"}, {id: 4, name: "Legendary Boots"},
+                {id: 5, name: "Leather Boots"}, {id: 6, name: "Bronze Boots"}, {id: 7, name: "Scale Boots"}, {id: 8, name: "Brass Boots"},
+                {id: 9, name: "Plate Boots"}, {id: 10, name: "Vine Boots"}, {id: 11, name: "Silk Boots"}, {id: 12, name: "Wind Boots"},
+                {id: 13, name: "Spirit Boots"}, {id: 14, name: "Guardian Boots"}, {id: 15, name: "Storm Crow Boots"}, {id: 16, name: "Black Dragon Boots"},
+                {id: 17, name: "Dark Phoenix Boots"}, {id: 18, name: "Divine Boots"}, {id: 19, name: "Grand Soul Boots"}, {id: 20, name: "Thunder Hawk Boots"},
+                {id: 21, name: "Great Dragon Boots"}, {id: 22, name: "Dark Soul Boots"}, {id: 23, name: "Hurricane Boots"}, {id: 24, name: "Red Spirit Boots"},
+                {id: 26, name: "Light Plate Boots"}, {id: 27, name: "Adamantine Boots"}, {id: 28, name: "Dark Steel Boots"}, {id: 29, name: "Dragon Knight Boots"},
+                {id: 30, name: "Venom Mist Boots"}, {id: 31, name: "Sylpid Ray Boots"}, {id: 32, name: "Volcano Boots"}, {id: 33, name: "Sunlight Boots"},
+                {id: 45, name: "Titan Boots"}, {id: 46, name: "Brave Boots"}, {id: 47, name: "Phantom Boots"}, {id: 48, name: "Hades Boots"}, {id: 50, name: "Seraphim Boots"}
+            ],
+            12: [ // ALAS (Wings)
+                {id: 0, name: "Wings of Elf (S1)"}, {id: 1, name: "Wings of Heaven (S1)"}, {id: 2, name: "Wings of Satan (S1)"},
+                {id: 3, name: "Wings of Spirits (S2)"}, {id: 4, name: "Wings of Soul (S2)"}, {id: 5, name: "Wings of Dragon (S2)"}, {id: 6, name: "Wings of Darkness (S2)"},
+                {id: 36, name: "Cape of Lord (S2)"}, {id: 37, name: "Wings of Illusion (S3)"}, {id: 38, name: "Wings of Hurricane (S3)"},
+                {id: 39, name: "Wings of Storm (S3)"}, {id: 40, name: "Mantle of Monarch (S3)"}, {id: 41, name: "Wings of Space Time (S3)"},
+                {id: 42, name: "Wings of Dimension (S3)"}, {id: 43, name: "Cape of Fighter (S3)"}
+            ],
+            13: [ // ANILLOS Y PETS (Accessories)
+                {id: 0, name: "Guardian Angel"}, {id: 1, name: "Imp"}, {id: 2, name: "Horn of Uniria"}, {id: 3, name: "Horn of Dinorant"},
+                {id: 4, name: "Dark Horse"}, {id: 5, name: "Dark Raven"}, {id: 8, name: "Ring of Ice"}, {id: 9, name: "Ring of Poison"},
+                {id: 12, name: "Pendant of Lightning"}, {id: 13, name: "Pendant of Fire"}, {id: 14, name: "Loch's Feather"},
+                {id: 20, name: "Wizards Ring"}, {id: 37, name: "Horn of Fenrir (Rojo)"}, {id: 64, name: "Demon"}, {id: 65, name: "Spirit of Guardian"}, {id: 67, name: "Pet Panda"}
+            ],
+            14: [ // JOYAS Y POCIONES (Jewels & Potions)
+                {id: 0, name: "Apple"}, {id: 1, name: "Small Healing Potion"}, {id: 2, name: "Medium Healing Potion"}, {id: 3, name: "Large Healing Potion"},
+                {id: 4, name: "Small Mana Potion"}, {id: 5, name: "Medium Mana Potion"}, {id: 6, name: "Large Mana Potion"}, {id: 13, name: "Jewel of Bless"}, 
+                {id: 14, name: "Jewel of Soul"}, {id: 16, name: "Jewel of Life"}, {id: 15, name: "Jewel of Chaos"}, {id: 22, name: "Jewel of Creation"}, 
+                {id: 31, name: "Jewel of Guardian"}, {id: 42, name: "Jewel of Harmony"}, {id: 43, name: "Lower Refining Stone"}, {id: 44, name: "Higher Refining Stone"}
+            ],
+            15: [ // SCROLLS Y PODERES (Scrolls/Spells)
+                {id: 0, name: "Scroll of Poison"}, {id: 1, name: "Scroll of Meteorite"}, {id: 2, name: "Scroll of Lightning"},
+                {id: 3, name: "Scroll of Fire Ball"}, {id: 4, name: "Scroll of Flame"}, {id: 5, name: "Scroll of Teleport"},
+                {id: 6, name: "Scroll of Ice"}, {id: 7, name: "Scroll of Twister"}, {id: 9, name: "Scroll of Evil Spirit"},
+                {id: 10, name: "Scroll of Hellfire"}, {id: 11, name: "Scroll of Aquabeam"}, {id: 12, name: "Scroll of Cometfall"},
+                {id: 16, name: "Scroll of Decay"}, {id: 17, name: "Scroll of Ice Storm"}, {id: 18, name: "Scroll of Nova"}
+            ]
         };
 
         const EXC_ARMOR_OPTIONS = [
