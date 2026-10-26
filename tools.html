@@ -23,6 +23,24 @@
     <style>
         body { background-color: #0f172a; color: #ffffff; }
         .card { background-color: #1e293b; }
+        
+        /* Botón con brillo azul encendido por defecto, baja al hover y fucsia al apretar */
+        .btn-glow-blue {
+            background-color: #0891b2; /* cyan-600 */
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-glow-blue:hover {
+            background-color: #0e7490; /* cyan-700 */
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+            opacity: 0.9;
+        }
+        .btn-glow-blue:active {
+            background-color: #c026d3 !important; /* fuchsia-600 */
+            box-shadow: 0 0 25px rgba(217, 70, 239, 0.9) !important;
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans">
@@ -60,7 +78,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- Tarjeta 1: Calculadora de Drop -->
-            <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-purple-500 transition duration-300">
+            <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <span class="bg-purple-500/20 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full border border-purple-500/30">
@@ -72,7 +90,7 @@
                         Genera líneas formateadas para <code class="text-cyan-400 font-mono text-xs">DropManager.txt</code> con la estructura exacta de tabulaciones requerida.
                     </p>
                 </div>
-                <a href="muemu-drop.html" class="block w-full text-center bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200">
+                <a href="muemu-drop.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
                     Abrir Herramienta
                 </a>
             </div>
@@ -90,27 +108,27 @@
                         Configura ítems, niveles, durabilidad y opciones excelentes para tiendas NPC en <code class="text-purple-300 font-mono text-xs">Shop0.txt</code> o <code class="text-purple-300 font-mono text-xs">ShopManager.txt</code>.
                     </p>
                 </div>
-                <a href="muemu-shop.html" class="block w-full text-center bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200">
+                <a href="muemu-shop.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
                     Abrir Herramienta
                 </a>
             </div>
 
-            <!-- Tarjeta 3: Próximamente -->
-            <div class="card rounded-2xl p-6 border border-slate-800 shadow-xl flex flex-col justify-between opacity-60">
+            <!-- Tarjeta 3: Creador de Spots -->
+            <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <span class="bg-slate-700 text-slate-400 text-xs font-semibold px-3 py-1 rounded-full">
-                            Próximamente
+                        <span class="bg-cyan-500/20 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/30">
+                            Monster System
                         </span>
                     </div>
-                    <h2 class="text-2xl font-bold text-slate-300 mb-2">Creador de Spots</h2>
-                    <p class="text-slate-500 text-sm mb-6">
-                        Configuración de coordenadas, monstruos y regeneración para <code class="text-slate-400 font-mono text-xs">MonsterSetBase.txt</code>.
+                    <h2 class="text-2xl font-bold text-white mb-2">Creador de Spots</h2>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Configuración de coordenadas, monstruos y regeneración para <code class="text-cyan-400 font-mono text-xs">MonsterSetBase.txt</code>.
                     </p>
                 </div>
-                <button disabled class="block w-full text-center bg-slate-800 text-slate-500 font-bold py-3 px-4 rounded-xl cursor-not-allowed">
-                    En desarrollo
-                </button>
+                <a href="spot-generator/index.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
+                    Abrir Herramienta
+                </a>
             </div>
 
         </div>
