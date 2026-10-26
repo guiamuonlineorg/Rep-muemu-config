@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Tutoriales - MuEmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.3); border-color: #a855f7; }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-800 flex items-center justify-center text-white text-xl shadow-md">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div>
+                    <h1 class="font-title text-lg font-bold text-mu-purple">Wiki MuEmu</h1>
+                    <p class="text-xs text-gray-400 font-mono">Guías y Tutoriales</p>
+                </div>
+            </div>
+            <a href="../index.html" class="px-4 py-2 bg-mu-border text-sm font-bold text-gray-200 rounded-lg hover:text-mu-gold transition flex items-center">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Volver al Inicio
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-10">
+        <div class="text-center mb-12">
+            <h2 class="font-title text-3xl md:text-4xl text-white font-bold mb-4">Aprende a configurar tu Servidor</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Domina los archivos de configuración de MuEmu paso a paso. Desde ajustar la experiencia básica hasta configurar los drops más complejos.</p>
+        </div>
+
+        <!-- Grilla de Tutoriales -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Tarjeta Tutorial 1 -->
+            <a href="exp-drop.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" alt="Código" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-mu-purple text-white text-xs font-bold px-2 py-1 rounded">Básico</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i class="fa-solid fa-chart-line text-mu-gold"></i>
+                        <span class="text-xs font-mono text-gray-400">Common.dat</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">1. Experiencia y Drop General</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Aprende a modificar la dificultad de tu servidor ajustando la ganancia de experiencia y la caída de Zen e ítems.</p>
+                    <span class="text-mu-purple font-semibold text-sm flex items-center">
+                        Leer guía completa <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </span>
+                </div>
+            </a>
+
+            <!-- Tarjeta Tutorial 2 (Ejemplo para llenar la grilla) -->
+            <div class="bg-mu-card border border-mu-border rounded-xl overflow-hidden opacity-75 grayscale hover:grayscale-0 transition cursor-not-allowed">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Spots" class="w-full h-full object-cover opacity-50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-white mb-2">2. Creación de Spots (Próximamente)</h3>
+                    <p class="text-sm text-gray-400 mb-4">Guía paso a paso para agregar monstruos en el archivo MonsterSetBase.txt.</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta Tutorial 3 (Ejemplo) -->
+            <div class="bg-mu-card border border-mu-border rounded-xl overflow-hidden opacity-75 grayscale transition cursor-not-allowed">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Drops" class="w-full h-full object-cover opacity-50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-white mb-2">3. Drops de EventItemBags (Próximamente)</h3>
+                    <p class="text-sm text-gray-400 mb-4">Configura las Cajas Kundun, Corazones y Medallas para que caigan ítems específicos.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
