@@ -12,9 +12,7 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' }
-                    },
+                    colors: { mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' } },
                     fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] }
                 }
             }
@@ -31,7 +29,6 @@
 </head>
 <body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
 
-    <!-- Header -->
     <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -44,63 +41,158 @@
                 </div>
             </div>
             <a href="../index.html" class="px-4 py-2 bg-mu-border text-sm font-bold text-gray-200 rounded-lg hover:text-mu-gold transition flex items-center">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Volver al Inicio
+                <i class="fa-solid fa-arrow-left mr-2"></i> Inicio
             </a>
         </div>
     </header>
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-10">
         <div class="text-center mb-12">
-            <h2 class="font-title text-3xl md:text-4xl text-white font-bold mb-4">Aprende a configurar tu Servidor</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Domina los archivos de configuración de MuEmu paso a paso. Desde ajustar la experiencia básica hasta configurar los drops más complejos.</p>
+            <h2 class="font-title text-3xl md:text-4xl text-white font-bold mb-4">Centro de Conocimiento MuEmu</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Aprende a configurar tu servidor paso a paso. Desde ajustar la experiencia básica hasta dominar los drops y la economía.</p>
         </div>
 
-        <!-- Grilla de Tutoriales -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Tarjeta Tutorial 1 -->
+            <!-- 1. Experiencia -->
             <a href="exp-drop.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
                 <div class="h-40 w-full relative">
-                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" alt="Código" class="w-full h-full object-cover opacity-70">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" alt="Exp" class="w-full h-full object-cover opacity-70">
                     <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
-                    <span class="absolute top-3 right-3 bg-mu-purple text-white text-xs font-bold px-2 py-1 rounded">Básico</span>
+                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Básico</span>
                 </div>
                 <div class="p-5">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <i class="fa-solid fa-chart-line text-mu-gold"></i>
-                        <span class="text-xs font-mono text-gray-400">Common.dat</span>
-                    </div>
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-chart-line text-mu-gold"></i><span class="text-xs font-mono text-gray-400">Common.dat</span></div>
                     <h3 class="text-lg font-bold text-white mb-2">1. Experiencia y Drop General</h3>
-                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Aprende a modificar la dificultad de tu servidor ajustando la ganancia de experiencia y la caída de Zen e ítems.</p>
-                    <span class="text-mu-purple font-semibold text-sm flex items-center">
-                        Leer guía completa <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
-                    </span>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Aprende a modificar la dificultad de tu servidor ajustando la ganancia de experiencia y la caída general de Zen.</p>
                 </div>
             </a>
 
-            <!-- Tarjeta Tutorial 2 (Ejemplo para llenar la grilla) -->
-            <div class="bg-mu-card border border-mu-border rounded-xl overflow-hidden opacity-75 grayscale hover:grayscale-0 transition cursor-not-allowed">
+            <!-- 2. Spots -->
+            <a href="spots.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
                 <div class="h-40 w-full relative">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Spots" class="w-full h-full object-cover opacity-50">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Spots" class="w-full h-full object-cover opacity-70">
                     <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">Intermedio</span>
                 </div>
                 <div class="p-5">
-                    <h3 class="text-lg font-bold text-white mb-2">2. Creación de Spots (Próximamente)</h3>
-                    <p class="text-sm text-gray-400 mb-4">Guía paso a paso para agregar monstruos en el archivo MonsterSetBase.txt.</p>
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-ghost text-emerald-400"></i><span class="text-xs font-mono text-gray-400">MonsterSetBase.txt</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">2. Creación de Spots</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Guía para agregar y distribuir monstruos por los mapas de forma optimizada.</p>
                 </div>
-            </div>
+            </a>
 
-            <!-- Tarjeta Tutorial 3 (Ejemplo) -->
-            <div class="bg-mu-card border border-mu-border rounded-xl overflow-hidden opacity-75 grayscale transition cursor-not-allowed">
+            <!-- 3. Drops -->
+            <a href="drops.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
                 <div class="h-40 w-full relative">
-                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Drops" class="w-full h-full object-cover opacity-50">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Drops" class="w-full h-full object-cover opacity-70">
                     <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">Intermedio</span>
                 </div>
                 <div class="p-5">
-                    <h3 class="text-lg font-bold text-white mb-2">3. Drops de EventItemBags (Próximamente)</h3>
-                    <p class="text-sm text-gray-400 mb-4">Configura las Cajas Kundun, Corazones y Medallas para que caigan ítems específicos.</p>
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-gem text-blue-400"></i><span class="text-xs font-mono text-gray-400">EventItemBag</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">3. Drops Personalizados</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Configura Cajas Kundun, Corazones y Medallas para que caigan ítems específicos o excelentes.</p>
                 </div>
-            </div>
+            </a>
+
+            <!-- 4. Shops -->
+            <a href="shops.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=600&q=80" alt="Shops" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Básico</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-store text-yellow-400"></i><span class="text-xs font-mono text-gray-400">Shop(x).txt</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">4. Tiendas de NPCs</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Edita los artículos que venden el Blacksmith, Lumen the Barmaid y otros NPCs de las ciudades.</p>
+                </div>
+            </a>
+
+            <!-- 5. Comandos -->
+            <a href="comandos.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=600&q=80" alt="Comandos" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">Básico</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-terminal text-green-400"></i><span class="text-xs font-mono text-gray-400">Command.dat</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">5. Comandos del Servidor</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Activa, desactiva y configura el costo de Zen para /post, /addstr, /reset y más.</p>
+                </div>
+            </a>
+
+            <!-- 6. Máquina Chaos -->
+            <a href="chaos-mix.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="Chaos" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-bold px-2 py-1 rounded">Intermedio</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-gears text-orange-400"></i><span class="text-xs font-mono text-gray-400">ChaosMix.dat</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">6. Porcentajes Máquina Chaos</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Ajusta las probabilidades de éxito para crear alas o subir ítems a +15 sin fallar.</p>
+                </div>
+            </a>
+
+            <!-- 7. Cash Shop -->
+            <a href="cash-shop-guide.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block border-mu-purple">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80" alt="Cash Shop" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-mu-purple text-white text-xs font-bold px-2 py-1 rounded">Destacado</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-cart-shopping text-mu-purple"></i><span class="text-xs font-mono text-gray-400">InGameShop.txt</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">7. In-Game Cash Shop (X)</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Cómo integrar los ítems generados con nuestra herramienta web directamente en tu servidor.</p>
+                </div>
+            </a>
+
+            <!-- 8. Eventos -->
+            <a href="eventos.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1533134486753-c833f0edde8c?auto=format&fit=crop&w=600&q=80" alt="Eventos" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">Avanzado</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-clock text-red-400"></i><span class="text-xs font-mono text-gray-400">EventManagement</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">8. Configuración de Eventos</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Horarios y recompensas del Blood Castle, Devil Square y Chaos Castle.</p>
+                </div>
+            </a>
+
+            <!-- 9. VIP -->
+            <a href="vip.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="VIP" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-mu-gold text-black text-xs font-bold px-2 py-1 rounded">Premium</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-star text-mu-gold"></i><span class="text-xs font-mono text-gray-400">Vip.dat</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">9. Sistema VIP</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Cómo configurar tarifas de exp, drop y beneficios exclusivos para cuentas premium.</p>
+                </div>
+            </a>
+
+            <!-- 10. GameMaster -->
+            <a href="gamemaster.html" class="bg-mu-card border border-mu-border rounded-xl overflow-hidden card-hover block">
+                <div class="h-40 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=600&q=80" alt="GM" class="w-full h-full object-cover opacity-70">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <span class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">Avanzado</span>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center space-x-2 mb-2"><i class="fa-solid fa-user-shield text-gray-300"></i><span class="text-xs font-mono text-gray-400">GMSystem.txt</span></div>
+                    <h3 class="text-lg font-bold text-white mb-2">10. GameMasters (GM)</h3>
+                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">Cómo darle permisos de administrador a un personaje y listar sus comandos exclusivos.</p>
+                </div>
+            </a>
 
         </div>
     </main>
