@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In-Game Shop (X) - MuEmu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mu: {
+                            dark: '#0a0a0f',
+                            card: '#12131a',
+                            border: '#2a2b3d',
+                            gold: '#d4af37',
+                            goldHover: '#f3c623',
+                            blue: '#1a5276',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        title: ['Cinzel', 'serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        
+        .btn-glow-blue {
+            background-color: #0891b2; color: #ffffff;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-glow-blue:hover {
+            background-color: #0e7490; box-shadow: 0 0 6px rgba(6, 182, 212, 0.3); opacity: 0.9;
+        }
+        .btn-glow-blue:active {
+            background-color: #c026d3 !important; box-shadow: 0 0 25px rgba(217, 70, 239, 0.9) !important; transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Header -->
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-800 flex items-center justify-center text-white font-extrabold text-xl shadow-md">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <div>
+                    <h1 class="font-title text-lg sm:text-xl font-bold tracking-wider text-purple-400">Cash Shop (X)</h1>
+                    <p class="text-xs text-gray-400 font-mono">Editor de Tienda In-Game</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="../index.html" class="btn-glow-blue px-3 py-1.5 text-xs sm:text-sm font-bold rounded-lg flex items-center space-x-2">
+                    <i class="fa-solid fa-house"></i> <span class="hidden sm:inline">Inicio</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
+        
+        <!-- Import Section -->
+        <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg flex items-center justify-between">
+            <div>
+                <h3 class="font-bold text-mu-gold text-lg"><i class="fa-solid fa-file-import mr-2"></i>Cargar Tienda Existente</h3>
+                <p class="text-xs text-gray-400">Seleccioná tu archivo InGameShop.txt o CashShop.txt para cargar los ítems y editar los precios.</p>
+            </div>
+            <div>
+                <input type="file" id="fileInput" accept=".txt" class="hidden" onchange="importShopFile(event)">
+                <button onclick="document.getElementById('fileInput').click()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                    <i class="fa-solid fa-folder-open mr-2"></i>Importar Archivo .txt
+                </button>
+            </div>
+        </div>
+
+        <!-- Editor Form -->
+        <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+            <h2 class="font-title text-purple-400 font-bold mb-4 border-b border-mu-border pb-2">
+                <i class="fa-solid fa-plus-circle mr-2"></i>Agregar / Editar Ítem
+            </h2>
+            <form id="shopForm" onsubmit="saveItem(event)" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                <input type="hidden" id="editId" value="">
+                
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Sección (Categoría X)</label>
+                    <input type="number" id="sec" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-purple-400 outline-none" required placeholder="Ej: 1">
+                </div>
+                
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Categoría Ítem (0-15)</label>
+                    <input type="number" id="cat" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-purple-400 outline-none" required placeholder="Ej: 0 (Espadas)">
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Index del Ítem</label>
+                    <input type="number" id="index" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-purple-400 outline-none" required placeholder="Ej: 22 (Bone Blade)">
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Nivel (+0 a +15)</label>
+                    <input type="number" id="lvl" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-purple-400 outline-none" value="0" required>
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-gray-400 mb-1">Moneda</label>
+                    <select id="coin" class="w-full bg-mu-dark border border-mu-border rounded p-2 text-sm text-white focus:border-purple-400 outline-none">
+                        <option value="0">0 - WCoinC</option>
+                        <option value="1">1 - WCoinP</option>
+                        <option value="2">2 - Goblin Point</option>
+                    </select>
+                </div>
+
+                <div class="col-span-2">
+                    <label class="block text-xs font-semibold text-mu-gold mb-1">Precio</label>
+                    <input type="number" id="price" class="w-full bg-mu-dark border border-mu-gold rounded p-2 text-sm text-white focus:border-purple-400 outline-none" required placeholder="Ej: 500">
+                </div>
+
+                <div class="col-span-4 flex items-end">
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 rounded-lg transition">
+                        Guardar Ítem en la Tienda
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Table -->
+        <div class="bg-mu-card border border-mu-border rounded-xl shadow-lg overflow-hidden">
+            <div class="p-4 border-b border-mu-border flex justify-between items-center">
+                <h2 class="font-title text-mu-gold font-bold"><i class="fa-solid fa-list mr-2"></i>Ítems en Venta</h2>
+                <button onclick="downloadShop()" class="px-3 py-1 bg-mu-gold text-black font-bold text-xs rounded hover:bg-yellow-500">
+                    <i class="fa-solid fa-download mr-1"></i> Descargar .txt
+                </button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs font-mono text-gray-300">
+                    <thead class="bg-mu-dark text-gray-400 border-b border-mu-border">
+                        <tr>
+                            <th class="p-3">Sección</th>
+                            <th class="p-3">Cat. Ítem</th>
+                            <th class="p-3">Index</th>
+                            <th class="p-3">Nivel</th>
+                            <th class="p-3">Moneda</th>
+                            <th class="p-3 text-mu-gold">Precio</th>
+                            <th class="p-3 text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="shopTable" class="divide-y divide-mu-border/60">
+                        <!-- JS Items -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let shopItems = [];
+
+        function renderTable() {
+            const tbody = document.getElementById('shopTable');
+            tbody.innerHTML = shopItems.map((item, idx) => {
+                const coinName = item.coin == 0 ? "WCoinC" : (item.coin == 1 ? "WCoinP" : "GoblinPoint");
+                return `
+                    <tr class="hover:bg-mu-border/30">
+                        <td class="p-3">${item.sec}</td>
+                        <td class="p-3">${item.cat}</td>
+                        <td class="p-3">${item.index}</td>
+                        <td class="p-3">+${item.lvl}</td>
+                        <td class="p-3 font-semibold text-blue-400">${coinName}</td>
+                        <td class="p-3 font-bold text-yellow-400">${item.price}</td>
+                        <td class="p-3 text-right space-x-2">
+                            <button onclick="deleteItem(${idx})" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function saveItem(e) {
+            e.preventDefault();
+            const newItem = {
+                sec: document.getElementById('sec').value,
+                cat: document.getElementById('cat').value,
+                index: document.getElementById('index').value,
+                lvl: document.getElementById('lvl').value,
+                coin: document.getElementById('coin').value,
+                price: document.getElementById('price').value
+            };
+            shopItems.push(newItem);
+            renderTable();
+            document.getElementById('shopForm').reset();
+            document.getElementById('lvl').value = "0";
+        }
+
+        function deleteItem(idx) {
+            shopItems.splice(idx, 1);
+            renderTable();
+        }
+
+        // Importador Básico de TXT
+        function importShopFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const lines = e.target.result.split('\n');
+                shopItems = []; // Limpiar tabla actual
+                
+                lines.forEach(line => {
+                    // Ignorar comentarios y líneas vacías
+                    const cleanLine = line.split('//')[0].trim();
+                    if(cleanLine === "" || cleanLine.toLowerCase() === "end" || isNaN(cleanLine.charAt(0))) return;
+
+                    // Separar por espacios o tabulaciones
+                    const parts = cleanLine.split(/\s+/);
+                    
+                    // Asegurar que tenga datos suficientes (esto varía según la versión de MuEmu)
+                    // Asumimos un formato básico: Sección, Cat, Index, Nivel, ... , Moneda, Precio
+                    if(parts.length >= 6) {
+                        shopItems.push({
+                            sec: parts[0],
+                            cat: parts[1],
+                            index: parts[2],
+                            lvl: parts[3],
+                            coin: parts[parts.length - 2], // Asumiendo que la moneda está al final
+                            price: parts[parts.length - 1] // Asumiendo que el precio es el último valor
+                        });
+                    }
+                });
+                renderTable();
+                alert("¡Archivo cargado con éxito! Revisá la tabla.");
+                event.target.value = ''; // Reset input
+            };
+            reader.readAsText(file);
+        }
+
+        function downloadShop() {
+            if(shopItems.length === 0) return alert("No hay ítems para descargar.");
+            
+            let txt = "// Generado por MuEmu Cash Shop Editor\n";
+            txt += "// Sec  Cat  Index  Lvl  ...  Coin  Price\n";
+            
+            shopItems.forEach(i => {
+                // Generando una línea tabulada genérica
+                txt += `${i.sec}\t${i.cat}\t${i.index}\t${i.lvl}\t0\t0\t0\t0\t0\t${i.coin}\t${i.price}\n`;
+            });
+            txt += "end\n";
+
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "InGameShop_Custom.txt";
+            link.click();
+        }
+    </script>
+</body>
+</html>
