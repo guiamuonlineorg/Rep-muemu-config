@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiendas de NPCs - Tutorial MuEmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' } }, fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-track { background: #0a0a0f; } ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        .article-content h3 { color: #facc15; font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content p, .article-content li { margin-bottom: 1.25rem; color: #d1d5db; line-height: 1.7; }
+        .code-block { background-color: #050505; border: 1px solid #2a2b3d; border-left: 4px solid #facc15; border-radius: 0.5rem; padding: 1rem; font-family: 'Fira Code', monospace; color: #a5b4fc; font-size: 0.9rem; overflow-x: auto; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-lg bg-mu-border flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="font-title text-lg font-bold text-white">Tutoriales MuEmu</h1>
+            </div>
+            <div class="text-sm font-mono text-yellow-400 hidden sm:block"><i class="fa-solid fa-folder-open mr-1"></i> Data / Shop / Shop(x).txt</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+        <nav class="text-xs font-mono text-gray-500 mb-6"><a href="../index.html" class="hover:text-yellow-400">Inicio</a> &gt; <a href="index.html" class="hover:text-yellow-400">Tutoriales</a> &gt; <span class="text-gray-300">Tiendas de NPCs</span></nav>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <article class="lg:w-3/4 bg-mu-card border border-mu-border rounded-2xl overflow-hidden shadow-xl">
+                <div class="h-64 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=80" alt="Shops" class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-yellow-500 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Básico</span>
+                        <h1 class="font-title text-3xl md:text-4xl text-white font-bold drop-shadow-md">Editar Tiendas de NPCs (Shops)</h1>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-10 article-content">
+                    <p>Las tiendas son esenciales en cualquier servidor para que los jugadores puedan comprar pociones, sets básicos o habilidades. En MuEmu, cada NPC tiene asignado un archivo de texto específico.</p>
+                    
+                    <h3>1. Ubicar la carpeta de Tiendas</h3>
+                    <div class="code-block text-gray-300">Muserver / Data / Shop /</div>
+                    <p>Adentro verás archivos numerados: <code>Shop0.txt</code>, <code>Shop1.txt</code>, etc. Por lo general, Shop0 es el Herrero (Blacksmith) de Lorencia, Shop1 es Lumen The Barmaid, y Shop2 es Pasi the Mage.</p>
+
+                    <h3>2. Estructura para agregar un Ítem</h3>
+                    <p>Al abrir un archivo de tienda, la estructura es similar a la In-Game Shop, pero más sencilla:</p>
+                    <div class="code-block">
+                        //Cat  Index  Lvl  Dur  Skill  Luck  Opt  Exc<br>
+                        <span class="text-yellow-400">0</span>      <span class="text-blue-400">0</span>      <span class="text-emerald-400">3</span>    <span class="text-purple-400">255</span>  <span class="text-gray-400">1</span>      <span class="text-gray-400">1</span>     <span class="text-gray-400">1</span>    <span class="text-red-400">0</span>   // Kris +3+Skill+Luck+Opt4
+                    </div>
+                    
+                    <ul class="list-disc pl-5">
+                        <li><strong>Cat & Index:</strong> Definen qué ítem es. (0 y 0 es la espada Kris).</li>
+                        <li><strong>Lvl:</strong> Nivel del ítem (0 a 15).</li>
+                        <li><strong>Dur:</strong> Durabilidad (Pon 255 para que tenga el máximo por defecto).</li>
+                        <li><strong>Skill / Luck:</strong> 1 si quieres que lo tenga, 0 si no.</li>
+                        <li><strong>Opt:</strong> Opción Life. (1 es +4, 2 es +8, etc.).</li>
+                    </ul>
+
+                    <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg my-8">
+                        <div class="flex items-center text-yellow-400 font-bold mb-2"><i class="fa-solid fa-lightbulb mr-2 text-xl"></i> Pro Tip: Descubrir qué Shop es cada NPC</div>
+                        <p class="text-sm text-gray-300 mb-0">Si quieres saber qué número de <code>ShopX.txt</code> corresponde a un NPC específico, abre el archivo <code>Data/Monster/Monster.txt</code>, busca el nombre del NPC, anota su ID, y luego búscalo en <code>Data/Monster/MonsterSetBase.txt</code>. Ahí verás qué número de Shop se le asignó al ponerlo en el mapa.</p>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="lg:w-1/4 space-y-6">
+                <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+                    <h4 class="font-title text-yellow-400 font-bold mb-3 border-b border-mu-border pb-2 text-sm">Sobre el Autor</h4>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-mu-border flex items-center justify-center text-gray-400"><i class="fa-solid fa-user-shield text-xl"></i></div>
+                        <div><p class="text-white font-bold text-sm">Admin</p><p class="text-xs text-gray-400 font-mono">Webmaster MuEmu</p></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
