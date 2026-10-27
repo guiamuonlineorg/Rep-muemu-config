@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Shop In-Game - Tutorial MuEmu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { mu: { dark: '#0a0a0f', card: '#12131a', border: '#2a2b3d', gold: '#d4af37', purple: '#a855f7' } }, fontFamily: { sans: ['Inter', 'sans-serif'], title: ['Cinzel', 'serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-track { background: #0a0a0f; } ::-webkit-scrollbar-thumb { background: #2a2b3d; border-radius: 4px; }
+        .article-content h3 { color: #a855f7; font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; }
+        .article-content p, .article-content li { margin-bottom: 1.25rem; color: #d1d5db; line-height: 1.7; }
+        .code-block { background-color: #050505; border: 1px solid #2a2b3d; border-left: 4px solid #a855f7; border-radius: 0.5rem; padding: 1rem; font-family: 'Fira Code', monospace; color: #a5b4fc; font-size: 0.9rem; overflow-x: auto; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="bg-mu-dark text-gray-200 font-sans min-h-screen flex flex-col">
+    <header class="bg-mu-card border-b border-mu-border sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="w-10 h-10 rounded-lg bg-mu-border flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700"><i class="fa-solid fa-arrow-left"></i></a>
+                <h1 class="font-title text-lg font-bold text-white">Tutoriales MuEmu</h1>
+            </div>
+            <div class="text-sm font-mono text-mu-purple hidden sm:block"><i class="fa-solid fa-folder-open mr-1"></i> Data / InGameShop.txt</div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8">
+        <nav class="text-xs font-mono text-gray-500 mb-6"><a href="../index.html" class="hover:text-mu-purple">Inicio</a> &gt; <a href="index.html" class="hover:text-mu-purple">Tutoriales</a> &gt; <span class="text-gray-300">In-Game Cash Shop</span></nav>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <article class="lg:w-3/4 bg-mu-card border border-mu-border rounded-2xl overflow-hidden shadow-xl">
+                <div class="h-64 w-full relative">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80" alt="Cash Shop" class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-t from-mu-card to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Destacado</span>
+                        <h1 class="font-title text-3xl md:text-4xl text-white font-bold drop-shadow-md">7. Configurar la Cash Shop (Tecla X)</h1>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-10 article-content">
+                    <p>La tienda In-Game, a la que se accede presionando la tecla X dentro del juego, permite a los usuarios gastar WCoins y Goblin Points en ítems premium sin depender de una web externa. Editarla a mano es un dolor de cabeza por la cantidad de columnas matemáticas que exige.</p>
+                    
+                    <h3>1. Utilizar nuestra Herramienta Web</h3>
+                    <p>En lugar de modificar el archivo manualmente, hemos creado un <strong>Generador Visual</strong> integrado en nuestra página. Solo debes ir a la herramienta, seleccionar qué ítem quieres, sus opciones excelentes, precio, y presionar "Exportar".</p>
+                    
+                    <a href="../cash-shop.html" class="inline-block bg-mu-purple hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg transition mb-6 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Ir al Creador de Tienda
+                    </a>
+
+                    <h3>2. Dónde colocar el archivo generado</h3>
+                    <p>Una vez que exportas tu lista de ítems desde nuestra web, se descargará un archivo llamado <code>InGameShop.txt</code>. Debes subir este archivo a tu VPS reemplazando el original en esta ruta:</p>
+                    <div class="code-block text-gray-300">Muserver / Data / InGameShop.txt</div>
+
+                    <h3>3. Aplicar los Cambios</h3>
+                    <p>No necesitas reiniciar el servidor. Ve a la consola negra del GameServer en tu VPS, haz clic en el menú <strong>Reload</strong> y selecciona la opción <strong>InGameShop</strong>. ¡Ingresa al juego, presiona la tecla X y disfruta de tus nuevos ítems a la venta!</p>
+                </div>
+            </article>
+
+            <aside class="lg:w-1/4 space-y-6">
+                <div class="bg-mu-card border border-mu-border rounded-xl p-5 shadow-lg">
+                    <h4 class="font-title text-mu-purple font-bold mb-3 border-b border-mu-border pb-2 text-sm">Herramienta Asociada</h4>
+                    <p class="text-sm text-gray-400 mb-4">Esta guía está diseñada para usarse en conjunto con nuestra herramienta interactiva.</p>
+                    <a href="../cash-shop.html" class="w-full block text-center bg-mu-border hover:bg-gray-700 text-white font-bold py-2 rounded transition">
+                        <i class="fa-solid fa-cart-shopping mr-2"></i> Abrir Cash Shop Maker
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>
