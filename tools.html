@@ -20,6 +20,7 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background-color: #0f172a; color: #ffffff; }
         .card { background-color: #1e293b; }
@@ -58,36 +59,57 @@
                 <div class="flex space-x-4">
                     <a href="index.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition">Inicio</a>
                     <a href="tools.html" class="text-white bg-slate-800 px-3 py-2 rounded-md text-sm font-medium">Herramientas</a>
+                    <a href="tutoriales/index.html" class="text-slate-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition">Wiki & Guías</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Contenido Principal -->
-    <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
         <div class="mb-10 text-center sm:text-left">
             <h1 class="text-4xl font-extrabold text-white mb-3">
                 Panel de <span class="text-purple-400">Herramientas</span>
             </h1>
             <p class="text-slate-400 text-lg">
-                Seleccioná la utilidad que necesites para configurar tu servidor MuOnline rápidamente.
+                Seleccioná la utilidad que necesites para configurar tu servidor MuOnline rápidamente y sin errores de formato.
             </p>
         </div>
 
         <!-- Grilla de Herramientas -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Tarjeta 1: Calculadora de Drop -->
+            <!-- Tarjeta 1: Cash Shop Maker (Destacada) -->
+            <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-purple-500 transition duration-300">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-purple-500/20 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full border border-purple-500/30">
+                            Cash Shop System
+                        </span>
+                        <i class="fa-solid fa-store text-purple-400 text-lg"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">In-Game Cash Shop (X)</h2>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                        Generador avanzado para tienda In-Game con base de datos masiva de ítems, opciones excelentes múltiples y soporte para editar archivos <code class="text-purple-300 font-mono text-xs">InGameShop.txt</code>.
+                    </p>
+                </div>
+                <a href="cash-shop.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
+                    Abrir Herramienta
+                </a>
+            </div>
+
+            <!-- Tarjeta 2: Calculadora de Drop -->
             <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <span class="bg-purple-500/20 text-purple-300 text-xs font-semibold px-3 py-1 rounded-full border border-purple-500/30">
                             Drop System
                         </span>
+                        <i class="fa-solid fa-gem text-purple-400 text-lg"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-white mb-2">Calculadora de Drop</h2>
                     <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        Genera líneas formateadas para <code class="text-cyan-400 font-mono text-xs">DropManager.txt</code> con la estructura exacta de tabulaciones requerida.
+                        Genera líneas formateadas para <code class="text-cyan-400 font-mono text-xs">DropManager.txt</code> con la estructura exacta de tabulaciones requerida por el emulador.
                     </p>
                 </div>
                 <a href="muemu-drop.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
@@ -95,17 +117,18 @@
                 </a>
             </div>
 
-            <!-- Tarjeta 2: Editor de Shops -->
+            <!-- Tarjeta 3: Editor de Shops -->
             <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <span class="bg-cyan-500/20 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/30">
                             Shops System
                         </span>
+                        <i class="fa-solid fa-cart-shopping text-cyan-400 text-lg"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-white mb-2">Editor de Shops</h2>
                     <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        Configura ítems, niveles, durabilidad y opciones excelentes para tiendas NPC en <code class="text-purple-300 font-mono text-xs">Shop0.txt</code> o <code class="text-purple-300 font-mono text-xs">ShopManager.txt</code>.
+                        Configura ítems, niveles, durabilidad y opciones excelentes para tiendas NPC en <code class="text-cyan-400 font-mono text-xs">Shop0.txt</code> o <code class="text-cyan-400 font-mono text-xs">ShopManager.txt</code>.
                     </p>
                 </div>
                 <a href="muemu-shop.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
@@ -113,17 +136,18 @@
                 </a>
             </div>
 
-            <!-- Tarjeta 3: Creador de Spots -->
+            <!-- Tarjeta 4: Creador de Spots -->
             <div class="card rounded-2xl p-6 border border-slate-700 shadow-xl flex flex-col justify-between hover:border-cyan-500 transition duration-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <span class="bg-cyan-500/20 text-cyan-300 text-xs font-semibold px-3 py-1 rounded-full border border-cyan-500/30">
                             Monster System
                         </span>
+                        <i class="fa-solid fa-ghost text-cyan-400 text-lg"></i>
                     </div>
                     <h2 class="text-2xl font-bold text-white mb-2">Creador de Spots</h2>
                     <p class="text-slate-400 text-sm mb-6 leading-relaxed">
-                        Configuración de coordenadas, monstruos y regeneración para <code class="text-cyan-400 font-mono text-xs">MonsterSetBase.txt</code>.
+                        Configuración de coordenadas, monstruos y tasas de regeneración para el archivo <code class="text-cyan-400 font-mono text-xs">MonsterSetBase.txt</code>.
                     </p>
                 </div>
                 <a href="spot-generator/index.html" class="btn-glow-blue block w-full text-center font-bold py-3 px-4 rounded-xl shadow-lg">
@@ -137,7 +161,7 @@
     <!-- Footer -->
     <footer class="bg-slate-950 py-6 border-t border-slate-800 mt-auto text-center">
         <p class="text-slate-500 text-sm">
-            MuEmu Config Toolkit
+            MuEmu Config Toolkit &copy; 2026 — Panel de Administración
         </p>
     </footer>
 
