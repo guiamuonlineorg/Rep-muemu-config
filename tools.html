@@ -150,7 +150,7 @@
             </div>
         </div>
 
-        <!-- COLUMNA DERECHA: Mini Juego (Alas S3) -->
+        <!-- COLUMNA DERECHA: Mini Juego (Alas S3 - Local) -->
         <aside class="lg:w-2/5 xl:w-1/3">
             <div class="bg-mu-card border border-mu-border rounded-2xl p-1 shadow-2xl sticky top-20 flex flex-col min-h-[620px]">
                 
@@ -166,10 +166,10 @@
                         
                         <!-- Caja de Imagen -->
                         <div id="itemBox" class="w-32 h-32 mx-auto bg-gray-950 border-2 border-gray-800 rounded-xl flex items-center justify-center shadow-inner relative mb-4 transition-all duration-300">
-                            <!-- Ícono genérico (Aparece cuando no hay alas) -->
+                            <!-- Ícono genérico (Aparece cuando no hay alas o si hay un error) -->
                             <i id="wingIconFallback" class="fa-solid fa-feather-pointed text-5xl text-gray-600 drop-shadow-md transition-all duration-300"></i>
                             
-                            <!-- Imagen de Alas (Oculta hasta que se crea) -->
+                            <!-- Imagen de Alas Local -->
                             <img id="wingImage" src="" alt="Wings" class="w-28 h-28 object-contain hidden levitate transition-all duration-300">
                         </div>
                         
@@ -226,17 +226,11 @@
         <p>MuEmu Config Toolkit &copy; 2026 — Panel de Administración Profesional.</p>
     </footer>
 
-    <!-- Lógica del Mini Juego S3 -->
+    <!-- Lógica del Mini Juego S3 (Sólo Wings of Storm locales) -->
     <script>
-        // Array de Imágenes (Podés cambiar los links acá si tenés tus propias fotos sin fondo)
+        // Array reducido a un solo ítem usando la ruta local exacta indicada
         const wingsData = [
-            { name: "Wings of Storm", url: "https://www.guiamuonline.com/images/alas/wings_of_storm.gif" },
-            { name: "Wings of Eternal", url: "https://www.guiamuonline.com/images/alas/wings_of_eternal.gif" },
-            { name: "Wings of Illusion", url: "https://www.guiamuonline.com/images/alas/wings_of_illusion.gif" },
-            { name: "Wings of Dimension", url: "https://www.guiamuonline.com/images/alas/wings_of_dimension.gif" },
-            { name: "Wings of Ruin", url: "https://www.guiamuonline.com/images/alas/wings_of_ruin.gif" },
-            { name: "Cape of Emperor", url: "https://www.guiamuonline.com/images/alas/cape_of_emperor.gif" },
-            { name: "Cape of Overrule", url: "https://www.guiamuonline.com/images/alas/cape_of_overrule.gif" }
+            { name: "Wings of Storm", url: "img/Wings-of-Storm.png" }
         ];
 
         const logBox = document.getElementById('gameLog');
@@ -256,11 +250,12 @@
             logBox.scrollTop = logBox.scrollHeight;
         }
 
-        // Si la imagen falla en cargar, vuelve al ícono
+        // Si la imagen falla en cargar porque el nombre de archivo es incorrecto
         wingImage.onerror = function() {
             this.style.display = 'none';
             wingIconFallback.style.display = 'block';
-            wingIconFallback.className = "fa-solid fa-triangle-exclamation text-5xl text-yellow-500 levitate";
+            wingIconFallback.className = "fa-brands fa-fly text-5xl text-gray-500 levitate";
+            writeLog("Error: No se encontró 'Wings-of-Storm.png' en la carpeta 'img'. Verifica el nombre.", "text-yellow-500");
         };
 
         function createWings() {
@@ -270,14 +265,12 @@
             wing.name = randomData.name;
             wing.lvl = 0;
             wing.life = 0;
-            wing.luck = Math.random() > 0.5; // 50% chance
+            wing.luck = Math.random() > 0.5;
             
-            // Alas S3 pueden salir con Ignore (5%) o Return (5%) u otra opcion rara
             let options = ["Ignore Opponent's Defensive Armor 5%", "Return the enemy's attack power 5%", "Complete recovery of life 5%", "None"];
             let excRoll = options[Math.floor(Math.random() * options.length)];
             wing.exc = excRoll === "None" ? "" : excRoll;
 
-            // Actualizar Imagen
             wingIconFallback.style.display = 'none';
             wingImage.src = randomData.url;
             wingImage.style.display = 'block';
@@ -330,12 +323,11 @@
             if(wing.lvl < 9) return writeLog("El Chaos Goblin solo sube alas de +9 a +15.", "text-gray-500");
             if(wing.lvl >= 15) return writeLog("¡Tus alas ya son +15! Eres invencible.", "text-mu-gold");
 
-            // Animación tensa de la máquina
             itemBox.classList.remove('shake-intense');
             void itemBox.offsetWidth;
             itemBox.classList.add('shake-intense');
 
-            let rate = wing.luck ? 50 : 40; // Porcentajes bajos reales
+            let rate = wing.luck ? 50 : 40; 
             let roll = Math.floor(Math.random() * 100) + 1;
 
             setTimeout(() => {
@@ -366,7 +358,6 @@
 
             let colorClass = "text-gray-300"; let dropShadow = "drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]"; let boxGlow = "inset 0 0 15px rgba(255,255,255,0.1)";
 
-            // Sistema Dinámico de Brillos por Nivel
             if(wing.lvl >= 1 && wing.lvl <= 6) { 
                 colorClass = "text-blue-300"; dropShadow = "drop-shadow-[0_0_12px_rgba(147,197,253,0.7)]"; boxGlow = "0 0 15px rgba(147,197,253,0.3)";
             } else if(wing.lvl >= 7 && wing.lvl <= 9) { 
@@ -387,7 +378,6 @@
             if(wing.life > 0) { statLife.style.display = 'inline'; statLife.innerText = `Add +${wing.life}`; } else { statLife.style.display = 'none'; }
             if(wing.exc !== "") { excOptionsBox.style.opacity = '1'; excOptionsBox.innerHTML = `<div>${wing.exc}</div>`; } else { excOptionsBox.style.opacity = '0'; }
 
-            // Habilitar botón de Chaos Goblin si es +9 o más
             if(wing.lvl >= 9 && wing.lvl < 15) {
                 btnChaos.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnChaos.classList.add('animate-pulse');
