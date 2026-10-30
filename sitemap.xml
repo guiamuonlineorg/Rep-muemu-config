@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/tools.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/cash-shop.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/muemu-drop.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/muemu-shop.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://guiamuonlineorg.github.io/muemu.config/spot-generator/index.html</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
